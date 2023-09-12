@@ -1,5 +1,1 @@
-# mojo-docs-cn
-
-## Reference
-
-- [honkit](https://github.com/honkit/honkit)
+# Mojo Docs 中文版
