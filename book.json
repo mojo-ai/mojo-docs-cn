@@ -9,6 +9,10 @@
     "keywords": "Mojo, Docs, 中文版",
     "language": "cn",
     "totalpages": 1,
+    "root": "./docs",
+    "structure": {
+      "readme": "overview.md"
+    },
     "plugins": [
       "-lunr", "-search", "search-pro",
       "back-to-top-button",
@@ -33,6 +37,5 @@
         "right": 32,
         "left": 32
       }
-    },
-    "root": "./docs"
+    }
 }
