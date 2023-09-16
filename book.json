@@ -1,3 +1,39 @@
 {
+    "title": "Mojo Docs 中文版",
+    "description": "Mojo Docs 中文版",
+    "author": "mojo-ai",
+    "isbn": "",
+    "published": "2023/09/16",
+    "copyright": "mojo-ai",
+    "website": "https://mojo-docs-cn.vercel.app/",
+    "keywords": "Mojo, Docs, 中文版",
+    "language": "cn",
+    "totalpages": 1,
+    "plugins": [
+      "-lunr", "-search", "search-pro",
+      "back-to-top-button",
+      "chapter-fold",
+      "expandable-chapters",
+      "github",
+      "splitter",
+      "tbfed-pagefooter"
+    ],
+    "pluginsConfig": {
+        "github": {
+            "url": "https://github.com/mojo-ai/mojo-docs-cn"
+        },
+        "tbfed-pagefooter": {
+            "copyright":"mojo-ai",
+            "modify_label": "该文件最后修改时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        }
+    },
+    "pdf": {
+      "pageNumbers": true,
+      "margin": {
+        "right": 32,
+        "left": 32
+      }
+    },
     "root": "./docs"
 }
