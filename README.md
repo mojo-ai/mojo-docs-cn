@@ -1,4 +1,4 @@
-# Mojo Docs 中文版
+# Mojo🔥 Docs 中文版
 
 ## Build
 

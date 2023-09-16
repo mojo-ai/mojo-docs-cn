@@ -1,7 +1,7 @@
 {
   "name": "mojo-docs-cn",
   "version": "1.0.0",
-  "description": "Mojo documentation in Chinese",
+  "description": "Mojo🔥 documentation in Chinese",
   "main": "index.js",
   "scripts": {
     "build": "honkit build",
