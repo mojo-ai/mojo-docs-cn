@@ -1,23 +1,9 @@
 # Mojo Docs 中文版
 
-## Install
-
-```bash
-npm install gitbook-plugin-back-to-top-button
-npm install gitbook-plugin-chapter-fold
-npm install gitbook-plugin-expandable-chapters
-npm install gitbook-plugin-github
-npm install gitbook-plugin-search-pro
-npm install gitbook-plugin-splitter
-npm install gitbook-plugin-tbfed-pagefooter
-npm install
-```
-
-
-
 ## Build
 
 ```bash
+npm install
 npm run build
 ```
 
@@ -26,6 +12,7 @@ npm run build
 ## Run
 
 ```bash
+npm install
 npm run serve
 ```
 
