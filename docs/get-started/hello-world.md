@@ -1,8 +1,6 @@
 安装 Mojo 后，您可以使用 [Mojo CLI](https://docs.modular.com/mojo/cli/) 构建和编译 [Mojo](https://docs.modular.com/mojo/manual/get-started/setup.html) 程序。因此，让我们创建经典开始程序“Hello，world！"吧。
 
-:::info开始之前：
-
-如运行 `modular install mojo` 时的输出中提示，您必须设置 `MODULAR_HOME` 和 `PATH` 环境变量。例如，如果您使用的是 bash，则可以按如下方式设置它们：
+**开始之前**：如运行 `modular install mojo` 时的输出中提示，您必须设置 `MODULAR_HOME` 和 `PATH` 环境变量。例如，如果您使用的是 bash，则可以按如下方式设置它们：
 
 ```bash
 echo 'export MODULAR_HOME="$HOME/.modular"' >> ~/.bashrc
@@ -113,6 +111,4 @@ Hello, world!
 
 * 要查看所有可用的 Mojo API，请查看 [Mojo 标准库参考](https://docs.modular.com/mojo/lib.html)。
 
-:::info注意
-Mojo SDK 仍处于早期开发阶段，但您可以期待语言和工具的不断改进。请参阅 [已知](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues) 问题并在 [GitHub 上报告任何其他问题](https://github.com/modularml/mojo/issues/new/choose)。
-:::
+**注意**：Mojo SDK 仍处于早期开发阶段，但您可以期待语言和工具的不断改进。请参阅 [已知](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues) 问题并在 [GitHub 上报告任何其他问题](https://github.com/modularml/mojo/issues/new/choose)。
