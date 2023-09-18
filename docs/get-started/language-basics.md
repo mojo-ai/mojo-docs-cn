@@ -16,7 +16,7 @@ Mojo 保留了 Python 的动态功能和语言语法，它甚至允许你从 Pyt
 
 本页提供了对 Mojo 语言的简短介绍，只需要一点编程经验。所以让我们开始吧！
 
-如果您是一位经验丰富的系统程序员，并且想要深入了解该语言，请查看[Mojo 编程手册](https://docs.modular.com/mojo/programming-manual.html)。
+如果您是一位经验丰富的系统程序员，并且想要深入了解该语言，请查看 [Mojo 编程手册](https://docs.modular.com/mojo/programming-manual.html)。
 
 ## 语言基础[](#language-basics)
 
@@ -35,7 +35,7 @@ fn main():
 
 当然，如果你正在构建一个 Mojo 模块（API 库），而不是一个 Mojo 程序，那么你的文件不需要`main()`函数（因为它将被其他有函数的程序导入）。
 
-**注意：**当在 `.mojo`/`.🔥` 文件中编写代码时，无法运行此页面上所示的顶级代码——Mojo 程序或模块中的所有代码都必须封装在函数或结构中。但是，顶级代码在 REPL 或 Jupyter notebook（例如[此页面的笔记](https://github.com/modularml/mojo/blob/main/examples/notebooks/HelloMojo.ipynb)）中可以运行。
+**注意：**当在 `.mojo`/`.🔥` 文件中编写代码时，无法运行此页面上所示的顶级代码——Mojo 程序或模块中的所有代码都必须封装在函数或结构中。但是，顶级代码在 REPL 或 Jupyter notebook（例如 [HelloMojo](https://github.com/modularml/mojo/blob/main/examples/notebooks/HelloMojo.ipynb)）中可以运行。
 
 现在让我们解释一下 `main()` 函数中的代码。
 
@@ -53,7 +53,7 @@ fn main():
 
 Mojo 函数可以用 `fn`（如上所示）或 `def`（如 Python）声明。 `fn` 声明强制实施强类型和内存安全行为， `def` 同时提供 Python 样式的动态行为。
 
- `fn` 和 `def` 函数都有其价值，学习它们很重要。但是，出于本介绍的目的，我们将仅关注 `fn` 函数。有关两者的更多详细信息，请参阅[编程手册](https://docs.modular.com/mojo/programming-manual.html)。
+ `fn` 和 `def` 函数都有其价值，学习它们很重要。但是，出于本介绍的目的，我们将仅关注 `fn` 函数。有关两者的更多详细信息，请参阅 [编程手册](https://docs.modular.com/mojo/programming-manual.html)。
 
 在以下部分中，你将了解 `fn` 函数如何在代码中强制实施强类型和内存安全行为。
 
@@ -183,7 +183,7 @@ mojo🔥
 
 ## 结构[](#structures)
 
-结构中可以将 types 或者 Objects 高度抽象化，结构类似于 Python 中的类：它们都支持方法、字段、运算符重载、元编程装饰器等。但是，Mojo 结构是完全静态的——它们在编译时绑定，因此它们不允许动态调度或进行任何运行时更改。（Mojo 将来也将支持类。）
+结构中可以将 types 或者 Objects 高度抽象化，结构类似于 Python 中的类：它们都支持方法、字段、运算符重载、元编程装饰器等。但是，Mojo 结构是完全静态的——它们在编译时绑定，因此它们不允许动态调度或进行任何运行时更改。（Mojo 将来也将支持类）
 
 例如，下面是一个基本结构：
 
@@ -213,9 +213,9 @@ mine.dump()
 
 如果你熟悉 Python，那么你应该熟悉 `__init__()` 方法和 `self` 参数。如果你不熟悉 Python，那么请注意，当我们调用 `dump()` 时，我们实际上并没有为 `self` 参数传递值。 `self` 的值会自动随结构的当前实例一起提供（它的用法类似于其他一些语言中 `this` ，用于引用对象/类型的当前实例）。
 
-有关结构和其他特殊方法（也称为“dunder”方法）的更多详细信息，请参阅[编程手册](https://docs.modular.com/mojo/programming-manual.html)。`__init__()`
+有关结构和其他特殊方法（也称为“dunder”方法）的更多详细信息，请参阅 [编程手册](https://docs.modular.com/mojo/programming-manual.html)。`__init__()`
 
-## python 集成[](#python-integration)
+## Python 集成[](#python-integration)
 
 虽然 Mojo 仍在进行中，还不是 Python 的完整超集，但我们已经构建了一种原样导入 Python 模块的机制，因此可以立即利用现有的 Python 代码。这种机制使用 CPython 解释器来运行 Python 代码，使其可以与当今的所有 Python 模块无缝协作。
 
@@ -240,14 +240,14 @@ print(ar.shape)
 
 **注意：**Mojo 还不是 Python 的一个功能完备的超集。因此，不能总是复制 Python 代码并在 Mojo 中运行。有关我们计划的更多详细信息，请参阅 [Mojo 路线图](https://docs.modular.com/mojo/roadmap.html)。
 
-**谨慎：**当安装 Mojo 时，安装程序会在系统中搜索要与 Mojo 一起使用的 Python 版本，并将路径添加到`modular.cfg`配置文件中。如果更改 Python 版本或切换虚拟环境，Mojo 将查看错误的 Python 库，这可能会导致导入 Python 包时出现错误等问题（Mojo 仅显示`An error occurred in Python` - 这是一个单独的[已知问题](https://github.com/modularml/mojo/issues/536)）。当前的解决方案是使用 `MOJO_PYTHON_LIBRARY` 环境变量覆盖 Mojo 的 Python 库路径。有关如何查找和设置此路径的说明，请参阅[此相关问题](https://github.com/modularml/mojo/issues/551)。
+**谨慎：**当安装 Mojo 时，安装程序会在系统中搜索要与 Mojo 一起使用的 Python 版本，并将路径添加到`modular.cfg`配置文件中。如果更改 Python 版本或切换虚拟环境，Mojo 将查看错误的 Python 库，这可能会导致导入 Python 包时出现错误等问题（Mojo 仅显示`An error occurred in Python` - 这是一个单独的 [已知问题](https://github.com/modularml/mojo/issues/536)）。当前的解决方案是使用 `MOJO_PYTHON_LIBRARY` 环境变量覆盖 Mojo 的 Python 库路径。有关如何查找和设置此路径的说明，请参阅 [相关问题](https://github.com/modularml/mojo/issues/551)。
 
 ## 后续步骤[](#next-steps)
 
-我们希望此页面涵盖了足够的基础知识，以帮助您入门。页面内容简短，所以如果你想更详细地了解这里涉及的任何主题，请查看[Mojo 编程手册](https://docs.modular.com/mojo/programming-manual.html)。
+我们希望此页面涵盖了足够的基础知识，以帮助您入门。页面内容简短，所以如果你想更详细地了解这里涉及的任何主题，请查看 [Mojo 编程手册](https://docs.modular.com/mojo/programming-manual.html)。
 
-- 如果要将代码打包为库，请阅读有关[Mojo 模块和包](https://docs.modular.com/mojo/manual/get-started/packages.html)的信息。
+- 如果要将代码打包为库，请阅读有关 [Mojo 模块和包](https://docs.modular.com/mojo/manual/get-started/packages.html) 的信息。
 - 如果想探索一些 Mojo 代码，请查看我们在 [GitHub 上的代码示例](https://github.com/modularml/mojo/tree/main/examples#mojo-code-examples)。
-- 要查看所有可用的 Mojo API，请查看[Mojo 标准库参考](https://docs.modular.com/mojo/lib.html)。
+- 要查看所有可用的 Mojo API，请查看 [Mojo 标准库参考](https://docs.modular.com/mojo/lib.html)。
 
-**注意：**Mojo SDK 仍处于早期开发阶段。有些内容仍然很粗糙，但您可以期待语言和工具的不断变化和改进。请参阅[已知](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues)问题并在 [GitHub 上报告任何其他问题](https://github.com/modularml/mojo/issues/new/choose)。
+**注意：**Mojo SDK 仍处于早期开发阶段。有些内容仍然很粗糙，但您可以期待语言和工具的不断变化和改进。请参阅 [已知问题](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues) 并在 [GitHub 上报告任何其他问题](https://github.com/modularml/mojo/issues/new/choose)。
