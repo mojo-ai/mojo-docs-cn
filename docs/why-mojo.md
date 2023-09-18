@@ -36,7 +36,7 @@ TBD
 
 TBD
 
-### 与 Python 的差异（有意为之）
+### 与 Python 的不同之处
 
 TBD
 
