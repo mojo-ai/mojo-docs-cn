@@ -31,7 +31,9 @@ Mojo SDK 可通过 [Modular CLI 工具](https://docs.modular.com/cli/) 获得，
 
 然后从 **[Hello, world!](https://docs.modular.com/mojo/manual/get-started/hello-world.html)** 开始吧！
 
-> **注意**：为了帮助我们改进 Mojo，我们收集了一些基本的系统信息和崩溃报告。[了解更多](https://docs.modular.com/mojo/faq.html#does-the-mojo-sdk-collect-telemetry)。
+:::info注意
+为了帮助我们改进 Mojo，我们收集了一些基本的系统信息和崩溃报告。[了解更多](https://docs.modular.com/mojo/faq.html#does-the-mojo-sdk-collect-telemetry)。
+:::
 
 ### 更新 Mojo[](#update-mojo)
 
