@@ -56,7 +56,7 @@ Hello, world!
 
 2. 现在使用以下命令运行它：`mojo`
 
-   ```
+   ```bash
    mojo hello.mojo
    ```
 
@@ -74,7 +74,7 @@ Hello, world!
 
 1. 使用 `build` 命令创建静态链接的二进制文件：
 
-   ```
+   ```bash
    mojo build hello.mojo
    ```
 
@@ -82,7 +82,7 @@ Hello, world!
 
 2. 然后运行可执行文件：
 
-   ```
+   ```bash
    ./hello
    ```
 
@@ -98,7 +98,7 @@ Hello, world!
 
 * 如果您想探索一些 Mojo 代码，请克隆我们的存储库以查看一些示例：
 
-  ```
+  ```bash
   git clone https://github.com/modularml/mojo.git
   ```
 
