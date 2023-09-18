@@ -39,19 +39,19 @@ Mojo 是一项正在进行的工作，我们将定期发布 Mojo 语言和 SDK �
 
 要检查您当前的 Mojo 版本，请使用以下选项：`--version`
 
-```
+```bash
 mojo --version
 ```
 
 要更新到最新的 Mojo 版本，请使用以下命令：`modular update`
 
-```
+```bash
 modular update mojo
 ```
 
 我们还可能发布该工具的更新，该工具作为 Debian 软件包安装（目前仅适用于 Linux），因此您可以像这样更新它：`modular`
 
-```
+```bash
 sudo apt update
 
 sudo apt install modular
