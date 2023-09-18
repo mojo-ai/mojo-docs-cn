@@ -1,6 +1,6 @@
-安装 Mojo 后，您可以使用 [Mojo CLI](https://docs.modular.com/mojo/cli/) 构建和编译 [Mojo](https://docs.modular.com/mojo/manual/get-started/setup.html) 程序。因此，让我们创建经典开始程序“Hello，world！"吧。
+安装 Mojo 后，可以使用 [Mojo CLI](https://docs.modular.com/mojo/cli/) 构建和编译 [Mojo](https://docs.modular.com/mojo/manual/get-started/setup.html) 程序。因此，让我们创建经典程序“Hello，world！"吧。
 
-**开始之前**：如运行 `modular install mojo` 时的输出中提示，您必须设置 `MODULAR_HOME` 和 `PATH` 环境变量。例如，如果您使用的是 bash，则可以按如下方式设置它们：
+**开始之前**：如运行 `modular install mojo` 时的输出中提示，您必须设置 `MODULAR_HOME` 和 `PATH` 环境变量。例如，如果使用的是 bash，则可以按如下方式设置：
 
 ```bash
 echo 'export MODULAR_HOME="$HOME/.modular"' >> ~/.bashrc
@@ -10,7 +10,7 @@ echo 'export PATH="$MODULAR_HOME/pkg/packages.modular.com_mojo/bin:$PATH"' >> ~/
 source ~/.bashrc
 ```
 
-如果您在安装过程中遇到其他问题，请查看我们的[已知问题](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues)。
+如果在安装过程中遇到其他问题，请查看我们的[已知问题](https://docs.modular.com/mojo/roadmap.html#mojo-sdk-known-issues)。
 :::
 
 ## 在 REPL 中运行代码[](#run-code-in-the-repl)
@@ -34,13 +34,13 @@ Hello, world!
 
  REPL 中可以编写任意数量的代码。按 Enter 键开始新行并继续编写代码，当您希望 Mojo 评估代码时，可以按 Enter 两次。如果有要打印的内容，Mojo会打印并返回提示。
 
-由于代码不会保存，REPL 主要用于简短的体验。因此当你想编写一个真正的程序时，需要在 `.mojo` 源文件中编写代码。
+由于代码不会保存，REPL 主要用于简短的体验。因此当想编写一个真正的程序时，需要在 `.mojo` 源文件中编写代码。
 
 ## 构建并运行 Mojo 源文件[](#build-and-run-mojo-source-files)
 
 现在让我们用源文件打印 “Hello， world”。Mojo 源文件使用 `.mojo` 或 `.🔥` 文件扩展名标识。
 
-您可以通过 `mojo` 命令来快速执行 Mojo 文件，也可以使用 `mojo build` 命令构建可执行文件。
+可以通过 `mojo` 命令来快速执行 Mojo 文件，也可以使用 `mojo build` 命令构建可执行文件。
 
 ### 运行 Mojo 文件[](#run-a-mojo-file)
 
@@ -66,7 +66,7 @@ Hello, world!
    Hello, world!
    ```
 
-如果这对您不起作用，请仔细检查您的代码看起来与步骤 1 中的代码完全相同，并确保您正确 [安装 Mojo](https://docs.modular.com/mojo/manual/get-started/#install-mojo)。
+如果这对您不起作用，请仔细检查代码看起来与步骤 1 中的代码完全相同，并确保正确 [安装 Mojo](https://docs.modular.com/mojo/manual/get-started/#install-mojo)。
 
 ### 构建可执行二进制文件[](#build-an-executable-binary)
 
@@ -78,7 +78,7 @@ Hello, world!
    mojo build hello.mojo
    ```
 
-   它创建与 `.mojo` 文件同名的二进制文件，但您可以使用该 `-o` 选项进行更改。
+   它创建与 `.mojo` 文件同名的二进制文件，但可以使用该 `-o` 选项进行更改。
 
 2. 然后运行可执行文件：
 
