@@ -54,7 +54,7 @@ Hello, world!
 
    保存文件并返回到终端。
 
-2. 现在使用以下命令运行它：`mojo`
+2. 现在使用 `mojo` 命令运行它：
 
    ```bash
    mojo hello.mojo
