@@ -1,6 +1,6 @@
-# Mojo模块和软件包
+# Mojo 模块和软件包
 
-Mojo提供了一个打包系统，允许将代码库组织和编译为可导入文件。本页介绍了有关如何将代码组织到模块和包（这很像 Python），并展示如何使用 [`mojo package`](https://docs.modular.com/mojo/cli/package.html)命令创建打包的二进制文件。
+Mojo 提供了一个打包系统，允许将代码库组织和编译为可导入文件。本页介绍了有关如何将代码组织到模块和包（这很像 Python），并展示如何使用 [`mojo package`](https://docs.modular.com/mojo/cli/package.html)命令创建打包的二进制文件。
 
 ## [Mojo modules](#mojo-modules)
 
@@ -71,7 +71,7 @@ fn main():
 
 __
 
-**注意：** Mojo 模块可能包含一个 `main()` 函数，也可能是可执行的，但这通常不是惯例，模块通常包括要导入并在其他Mojo程序中使用的API。
+**注意：** Mojo 模块可能包含一个 `main()` 函数，也可能是可执行的，但这通常不是惯例，模块通常包括要导入并在其他 Mojo 程序中使用的 API。
 
 ## [Mojo 包](#mojo-packages)
 
@@ -193,4 +193,4 @@ from algorithm import map
 
 __
 
-**注意：**将标准库中的哪些模块导入到包范围会有所不同，并且可能会发生变化。请参阅[每个模块的文档](https://docs.modular.com/mojo/lib.html)，了解如何导入其成员。
+**注意：**将标准库中的哪些模块导入到包范围会有所不同，并且可能会发生变化。请参阅 [每个模块的文档](https://docs.modular.com/mojo/lib.html)，了解如何导入其成员。
