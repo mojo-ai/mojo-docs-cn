@@ -2,7 +2,7 @@
 
 Mojo 提供了一个打包系统，允许将代码库组织和编译为可导入文件。本页介绍了有关如何将代码组织到模块和包（这很像 Python），并展示如何使用 [`mojo package`](https://docs.modular.com/mojo/cli/package.html)命令创建打包的二进制文件。
 
-## [Mojo modules](#mojo-modules)
+## [Mojo 模块](#mojo-modules)
 
 要了解 Mojo 包，首先需要了解 Mojo 模块。Mojo 模块是单个 Mojo 源文件，其中包含适合由导入它的其他文件使用的代码。例如，可以创建一个模块来定义结构，如下所示：
 
