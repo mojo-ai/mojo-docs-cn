@@ -65,7 +65,7 @@ sudo apt install modular
 
 ![mojo-playground](../static/images/mojo/mojo-playground.png)
 
-### 期待什么[](#what-to-expect)
+### 其他[](#what-to-expect)
 
 - Mojo Playground 是一个 [JupyterHub](https://jupyter.org/hub) 环境，您可以在其中获得与您的帐户关联的专用卷，因此您可以创建自己的笔记，并且它们将跨会话保存。
 - 我们提供了一些笔记，向您展示 Mojo 基础知识并演示其功能。
