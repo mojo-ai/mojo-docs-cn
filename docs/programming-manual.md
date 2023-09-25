@@ -571,11 +571,11 @@ fn example(inout a: Int, b_in: Int, c_in: Object):
 
 卷影副本通常不会增加开销，因为像这样的小类型的引用`Object`复制起来很便宜。昂贵的部分是调整引用计数，但这可以通过移动优化来消除。
 
-## Python集成[](#python-integration)
+## Python 集成[](#python-integration)
 
 在 Mojo 中使用您熟悉和喜爱的 Python 模块非常简单。您可以将任何 Python 模块导入到 Mojo 程序中，并从 Mojo 类型创建 Python 类型。
 
-### 导入Python模块[](#importing-python-modules)
+### 导入 Python 模块[](#importing-python-modules)
 
 要在 Mojo 中导入 Python 模块，只需`Python.import_module()`使用模块名称进行调用：
 
@@ -594,7 +594,7 @@ print(array)
 [1 2 3]
 ```
 
-是的，这会导入 Python NumPy，并且您可以导入*任何其他 Python 模块*。
+是的，这会导入 Python NumPy，并且您可以导入任何其他 Python 模块。
 
 目前，您无法导入单个成员（例如单个 Python 类或函数），您必须导入整个 Python 模块，然后通过模块名称访问成员。
 
@@ -658,7 +658,7 @@ starch is included
 protein is not in dictionary
 ```
 
-#### 导入本地Python模块[](#importing-local-python-modules)
+#### 导入本地 Python 模块[](#importing-local-python-modules)
 
 如果您想在 Mojo 中使用一些本地 Python 代码，只需将目录添加到 Python 路径，然后导入模块即可。
 
@@ -690,11 +690,11 @@ print(c)
 
 Python 最令人惊奇的功能之一是其可扩展的运行时元编程功能。这使得广泛的库成为可能，并提供了灵活且可扩展的编程模型，世界各地的 Python 程序员都可以从中受益。不幸的是，这些功能也是有代价的：因为它们是在运行时评估的，所以它们直接影响底层代码的运行时效率。由于 IDE 不知道它们，因此代码完成等 IDE 功能很难理解它们并使用它们来改善开发人员体验。
 
-在Python生态系统之外，静态元编程也是开发的重要组成部分，可以开发新的编程范例和高级库。这个领域有许多现有技术的例子，具有不同的权衡，例如：
+在 Python 生态系统之外，静态元编程也是开发的重要组成部分，可以开发新的编程范例和高级库。这个领域有许多现有技术的例子，具有不同的权衡，例如：
 
 1. 预处理器（例如C 预处理器、Lex/YACC 等）可能是最繁重的。它们完全通用，但在开发人员体验和工具集成方面最差。
 2. 一些语言（如 Lisp 和 Rust）支持（有时是“卫生的”）宏扩展功能，通过更好的工具集成实现语法扩展和样板文件减少。
-3. _一些较旧的语言（例如 C++）具有非常庞大且复杂的元编程语言（模板），它们是运行时_语言的双重语言。这些尤其难以学习，并且编译时间和错误消息都很差。
+3. 一些较旧的语言（例如 C++）具有非常庞大且复杂的元编程语言（模板），它们是运行时_语言的双重语言。这些尤其难以学习，并且编译时间和错误消息都很差。
 4. 有些语言（如 Swift）以一流的方式将许多功能构建到核心语言中，为常见情况提供良好的人体工程学效果，但牺牲了通用性。
 5. 一些较新的语言（例如 Zig）将语言解释器集成到编译流程中，并允许解释器在编译 AST 时进行反映。这使得许多与宏系统相同的功能具有更好的扩展性和通用性。
 
@@ -710,9 +710,9 @@ Python 最令人惊奇的功能之一是其可扩展的运行时元编程功能�
 
 ### 定义参数化类型和函数[](#defining-parameterized-types-and-functions)
 
-[您可以通过在方括号中指定参数名称和类型来参数化结构和函数（使用PEP695 语法](https://peps.python.org/pep-0695/)的扩展版本）。[与参数值不同，参数值在编译时是已知的，这可以实现额外级别的抽象和代码重用，以及自动调整](https://docs.modular.com/mojo/programming-manual.html#autotuning-adaptive-compilation)等编译器优化。
+您可以通过在方括号中指定参数名称和类型来参数化结构和函数（[使用 PEP695 语法](https://peps.python.org/pep-0695/)的扩展版本）。与参数值不同，参数值在编译时是已知的，这可以实现额外级别的抽象和代码重用，以及[自动调整](https://docs.modular.com/mojo/programming-manual.html#autotuning-adaptive-compilation)等编译器优化。
 
-例如，让我们看一下[SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data)类型，它表示硬件中保存标量数据类型的多个实例的低级向量寄存器。硬件加速器不断引入新的向量数据类型，甚至CPU也可能有512位或更长的SIMD向量。为了访问这些处理器上的 SIMD 指令，必须将数据整形为正确的 SIMD 宽度（数据类型）和长度（向量大小）。
+例如，让我们看一下 [SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) 类型，它表示硬件中保存标量数据类型的多个实例的低级向量寄存器。硬件加速器不断引入新的向量数据类型，甚至CPU也可能有512位或更长的SIMD向量。为了访问这些处理器上的 SIMD 指令，必须将数据整形为正确的 SIMD 宽度（数据类型）和长度（向量大小）。
 
 然而，用 Mojo 的内置类型定义所有不同的 SIMD 变体是不可行的。因此，Mojo 的`SIMD`类型（定义为结构）在其方法中公开了常见的 SIMD 操作，并使 SIMD 数据类型和大小值参数化。这使您可以将数据直接映射到任何硬件上的 SIMD 向量。
 
@@ -738,7 +738,7 @@ struct SIMD[type: DType, size: Int]:
 
 使用参数定义每个 SIMD 变体非常有利于代码重用，因为该`SIMD`类型可以静态地表达所有不同的向量变体，而不需要语言预先定义每个变体。
 
-因为`SIMD`是参数化类型，所以`self`其函数中的实参携带这些参数——完整的类型名称是`SIMD[type, size]`。尽管将其写出是有效的（如 的返回类型所示`splat()`），但这可能会很冗长，因此我们建议像示例一样使用该`Self`类型（来自[PEP673](https://peps.python.org/pep-0673/)）`__add__`。
+因为`SIMD`是参数化类型，所以`self`其函数中的实参携带这些参数——完整的类型名称是`SIMD[type, size]`。尽管将其写出是有效的（如 的返回类型所示`splat()`），但这可能会很冗长，因此我们建议像示例一样使用该`Self`类型（来自 [PEP673](https://peps.python.org/pep-0673/)）`__add__`。
 
 ### 参数重载[](#overloading-on-parameters)
 
@@ -1108,7 +1108,7 @@ selected: 3
 
 编译此代码的实例时，Mojo 会分叉此算法的编译，并通过测量在实践中最适合目标硬件的值来决定使用哪个值。它评估表达式的不同值`vector_len`，并根据用户定义的性能评估器选择最快的值。例如，因为它单独测量和评估每个选项，所以它可能会为`float32`选取不同的向量长度。`int8`这个简单的功能非常强大——超越了简单的整数常量——因为函数和类型也是参数表达式。
 
-请注意，最佳向量长度的搜索是由该[`search()`](https://docs.modular.com/mojo/stdlib/autotune/autotuning.html#search)函数执行的。`search()`接受一个评估器和一个分叉函数，并返回评估器选择的最快实现作为参数结果。[要更深入地了解此主题，请查看有关Mojo 中的](https://docs.modular.com/mojo/notebooks/Memset.html)[矩阵乘法](https://docs.modular.com/mojo/notebooks/Matmul.html)和Fast Memset的笔记本。[](https://docs.modular.com/mojo/notebooks/Memset.html)
+请注意，最佳向量长度的搜索是由该[`search()`](https://docs.modular.com/mojo/stdlib/autotune/autotuning.html#search)函数执行的。`search()`接受一个评估器和一个分叉函数，并返回评估器选择的最快实现作为参数结果。要更深入地了解此主题，请查看有关 Mojo 中的[矩阵乘法](https://docs.modular.com/mojo/notebooks/Matmul.html)和 [Fast Memset](https://docs.modular.com/mojo/notebooks/Memset.html)。
 
 自动调优本质上是一种指数技术，受益于 Mojo 编译器堆栈的内部实现细节（特别是 MLIR、集成缓存和编译分发）。这也是一个高级用户功能，需要随着时间的推移不断开发和迭代。
 
@@ -1418,7 +1418,7 @@ final a
 
 在上面的代码中，您将看到 和`a`值`b`是在早期创建的，并且值的每个初始化都与对析构函数的调用相匹配。请注意，它`a`会被多次销毁——每次收到新值时都会被销毁一次。
 
-现在，这可能会让 C++ 程序员感到惊讶，因为它与[RAII 模式不同，在 RAII 模式](https://en.cppreference.com/w/cpp/language/raii)中，C++ 在作用域末尾销毁值。Mojo 还遵循这样的原则：值在构造函数中获取资源并在析构函数中释放资源，但 Mojo 中的急切销毁比 C++ 中基于范围的销毁具有许多强大的优势：
+现在，这可能会让 C++ 程序员感到惊讶，因为它与 RAII 模式不同，在 [RAII 模式](https://en.cppreference.com/w/cpp/language/raii)中，C++ 在作用域末尾销毁值。Mojo 还遵循这样的原则：值在构造函数中获取资源并在析构函数中释放资源，但 Mojo 中的急切销毁比 C++ 中基于范围的销毁具有许多强大的优势：
 
 * Mojo 方法消除了类型实现重新赋值运算符的需要，例如C++ 中的`operator=(const T&)`and `operator=(T&&)`，从而更容易定义类型并消除概念。
 * Mojo 不允许可变引用与其他可变引用或不可变借用重叠。它提供可预测编程模型的一个主要方法是确保对对象的引用尽快消失，避免编译器认为一个值可能仍然存在并干扰另一个值的混乱情况，但这对于用户。
@@ -1462,7 +1462,7 @@ foo
 hello
 ```
 
-请注意，该`ts.str1`字段几乎立即被销毁，因为 Mojo 知道它将被下面覆盖。[您还可以在使用转移运算符](https://docs.modular.com/mojo/programming-manual.html#owned-arguments)时看到这一点，例如：
+请注意，该`ts.str1`字段几乎立即被销毁，因为 Mojo 知道它将被下面覆盖。您还可以在使用[转移运算符](https://docs.modular.com/mojo/programming-manual.html#owned-arguments)时看到这一点，例如：
 
 ```
 fn consume(owned arg: String):
@@ -1717,4 +1717,4 @@ Mojo 标准库`Pointer[element_type]`类型是通过 MLIR 中的底层`!kgen.poi
 
 ### 直接访问 MLIR[](#direct-access-to-mlir)
 
-Mojo 提供对 MLIR 方言和生态系统的完全访问。请查看[Mojo 中的低级 IR，](https://docs.modular.com/mojo/notebooks/BoolMLIR.html)了解如何使用`__mlir_type`、`__mlir_op`和`__mlir_type`结构。所有内置和标准库 API 都是通过调用底层 MLIR 构造来实现的，在这样做时，Mojo 有效地充当了 MLIR 之上的语法糖。
+Mojo 提供对 MLIR 方言和生态系统的完全访问。请查看 Mojo 中的[低级 IR](https://docs.modular.com/mojo/notebooks/BoolMLIR.html)，了解如何使用`__mlir_type`、`__mlir_op`和`__mlir_type`结构。所有内置和标准库 API 都是通过调用底层 MLIR 构造来实现的，在这样做时，Mojo 有效地充当了 MLIR 之上的语法糖。
