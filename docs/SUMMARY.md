@@ -11,7 +11,7 @@
 * [Mojo 特性](mojo-notebooks/README.md)
     * [概述](mojo-notebooks/overview.md)
     * [Mojo 低级 IR](mojo-notebooks/low-level-ir-in-mojo.md)
-    * [Mojo 基于 Python plots 实现 Mandelbrot 算法](mojo-notebooks/mandelbrot-in-mojo-with-python-plots.md)
+    * [Mojo 中的 Mandelbrot 算法与 Python 绘图](mojo-notebooks/mandelbrot-in-mojo-with-python-plots.md)
     * [Mojo 矩阵乘法](mojo-notebooks/matrix-multiplication-in-mojo.md)
     * [Mojo 快速 memset](mojo-notebooks/fast-memset-in-mojo.md)
     * [Mojo 光线追踪](mojo-notebooks/ray-tracing-in-mojo.md)
