@@ -4,7 +4,7 @@ Mojo 不仅适用于编写高性能代码，还可以让我们充分利用庞大
 
 本教程展示了 Mojo 在两个方面的用法。首先， 它展示了 Mojo 可以用于开发不规则应用的高效程序。其次，它展示了我们如何利用 Python 来可视化结果。
 
-<details><summary>**代码**</summary>
+<details><summary>代码</summary>
 <pre><code>
 from benchmark import Benchmark
 from complex import ComplexSIMD, ComplexFloat64
