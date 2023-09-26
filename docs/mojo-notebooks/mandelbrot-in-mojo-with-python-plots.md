@@ -20,8 +20,6 @@ alias simd_width = 2 * simdwidthof[float_type]()
 ```
 {% endfold %}
 
-&nbsp;
-
 首先设置一些参数，您可以尝试更改这些参数值以查看不同的效果：
 
 ```python
