@@ -269,7 +269,7 @@ fn compare():
 compare()
 ```
 
->Number of threads: 16
+> Number of threads: 16
 >
 > Vectorized: 12.171849 ms
 >
