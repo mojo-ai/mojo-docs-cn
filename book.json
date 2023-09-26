@@ -19,6 +19,7 @@
       "chapter-fold",
       "expandable-chapters",
       "github",
+      "katex",
       "tbfed-pagefooter"
     ],
     "pluginsConfig": {

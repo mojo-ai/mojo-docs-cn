@@ -35,9 +35,9 @@ alias max_y = 1.5
 
 [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) 算法的核心涉及到需要为每个像素点计算一个迭代的复杂函数，直至它“逃离”半径为 2 的复数圆，并记录逃离所需的迭代次数：
 
-$$
+{% math %}
 z_{i+1} = z_i^2 + c
-$$
+{% endmath %}
 
 ```python
 # Compute the number of steps to escape.
