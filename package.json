@@ -18,6 +18,7 @@
     "gitbook-plugin-back-to-top-button": "^0.1.4",
     "gitbook-plugin-chapter-fold": "^0.0.4",
     "gitbook-plugin-expandable-chapters": "^0.2.0",
+    "gitbook-plugin-folding-content": "^1.0.0",
     "gitbook-plugin-github": "^3.0.0",
     "gitbook-plugin-katex": "^1.1.4",
     "gitbook-plugin-search-pro": "^2.0.2",
