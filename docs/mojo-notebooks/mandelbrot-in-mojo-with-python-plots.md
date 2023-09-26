@@ -1,4 +1,4 @@
-# Mojo 中的 Mandelbrot 算法与 Python 绘图
+# Mojo Mandelbrot 算法与 Python 绘图
 
 Mojo 不仅适用于编写高性能代码，还可以让我们充分利用庞大的 Python 生态系统中的库和工具。借助无缝的 Python 互操作性，Mojo 可以充分发挥 Python 在特定领域的优势，特别是在 GUI 方面，而不会在关键代码性能上妥协。让我们来看看如何在 Mojo 中实现经典的 Mandelbrot 集合算法。
 
