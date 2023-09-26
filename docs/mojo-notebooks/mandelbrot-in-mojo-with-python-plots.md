@@ -4,21 +4,21 @@ Mojo 不仅适用于编写高性能代码，还可以让我们充分利用庞大
 
 本教程展示了 Mojo 在两个方面的用法。首先， 它展示了 Mojo 可以用于开发不规则应用的高效程序。其次，它展示了我们如何利用 Python 来可视化结果。
 
-<details>
-    <summary><mark><font color=darkred>查看代码</font></mark></summary>
-	<pre><code class="language-python">
-  from benchmark import Benchmark
-  from complex import ComplexSIMD, ComplexFloat64
-  from math import iota
-  from python import Python
-  from runtime.llcl import num_cores, Runtime
-  from algorithm import parallelize, vectorize
-  from tensor import Tensor
-  from utils.index import Index
-  alias float_type = DType.float64
-  alias simd_width = 2 * simdwidthof[float_type]()
-</code></pre>
-</details>
+{% reveal text="查看代码" %}
+
+from benchmark import Benchmark
+from complex import ComplexSIMD, ComplexFloat64
+from math import iota
+from python import Python
+from runtime.llcl import num_cores, Runtime
+from algorithm import parallelize, vectorize
+from tensor import Tensor
+from utils.index import Index
+alias float_type = DType.float64
+alias simd_width = 2 * simdwidthof[float_type]()
+
+{% endreveal %}
+
 首先设置一些参数，您可以尝试更改这些参数值以查看不同的效果：
 
 ```python
@@ -34,7 +34,9 @@ alias max_y = 1.5
 
 [Mandelbrot](https://en.wikipedia.org/wiki/Mandelbrot_set) 算法的核心涉及到需要为每个像素点计算一个迭代的复杂函数，直至它“逃离”半径为 2 的复数圆，并记录逃离所需的迭代次数：
 
-$`z_{i+1} = z_i^2 + c`$
+$$
+z_{i+1} = z_i^2 + c
+$$
 
 ```python
 # Compute the number of steps to escape.
