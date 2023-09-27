@@ -1,7 +1,3 @@
-pre {
-  overflow-y: auto;
-  max-height: 500px;
-}
 
 # Mojo 快速 memset
 
@@ -158,6 +154,7 @@ benchmark(memset_manual, "Manual memset")
 benchmark(memset_system, "System memset")
 ```
 
+{% fold summary="查看结果" %}
 ```
 =====================
 Manual memset
@@ -239,6 +236,7 @@ Size: 32   |***************************************************
 Size: 33   |***************************************************
 Size: 34   |***************************************************    
 ```
+{% endfold %}
 
 ## 调整不同尺寸的实现
 
@@ -285,6 +283,7 @@ benchmark(memset_manual_2, "Manual memset v2")
 benchmark(memset_system, "Mojo system memset")
 ```
 
+{% fold summary="查看结果" %}
 ```
 =====================
 Manual memset v2
@@ -366,6 +365,7 @@ Size: 32   |***************************************************
 Size: 33   |***************************************************
 Size: 34   |***************************************************
 ```
+{% endfold %}
 
 这个16-32尺寸上的性能现在好多了！
 
@@ -528,6 +528,7 @@ benchmark(memset_system, "Mojo system memset")
 benchmark(memset_autotune, "Mojo autotune memset")
 ```
 
+{% fold summary="查看结果" %}
 ```
 =====================
 Mojo manual memset
@@ -689,3 +690,5 @@ Size: 32   |**********************************
 Size: 33   |********************************************************************
 Size: 34   |********************************************************************
 ```
+{% endfold %}
+
