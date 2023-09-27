@@ -8,7 +8,7 @@
 C_{i,j} += \sum_{k \in [0 \cdots K)} A_{i,k} B_{k,j}
 {% endmath %}
 
-> 请查看我们关于矩阵乘法（matmul）以及它对机器学习和深度学习工作负载的重要性的博客文章。
+> 请查看我们关于矩阵乘法（matmul）以及它对机器学习和深度学习工作负载的重要性的[博客文章](https://www.modular.com/blog/ais-compute-fragmentation-what-matrix-multiplication-teaches-us)。
 
 本文档内容先从一个与 Python 完全相同的实现开始（实际上只是更改文件扩展名），然后看看如何通过为实现添加类型来提高性能，最后通过利用现代硬件提供的向量化和并行化功能来扩展实现。在执行过程中，我们会报告所达到的 GFlops（每秒浮点操作次数）。
 
