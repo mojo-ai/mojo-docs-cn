@@ -63,6 +63,7 @@ python_gflops = benchmark_matmul_python(128, 128, 128).to_float64()
 ## 将 Python 实现替换为 Mojo
 
 使用 Mojo 就像使用 Python 一样简单。首先，让我们导入 Mojo 标准库中我们要使用的模块：
+
 {% fold summary="导入实用程序并定义 Matrix（单击以显示/隐藏）" %}
 ```python
 from benchmark import Benchmark
@@ -76,6 +77,7 @@ from sys.info import simdwidthof
 from runtime.llcl import Runtime
 ```
 {% endfold %}
+
 接下来，我们可以复制并粘贴我们的 Python 代码。Mojo 是 Python 的超集，因此相同的 Python 代码将作为 Mojo 代码运行。
 
 ```python
