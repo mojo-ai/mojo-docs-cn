@@ -1,9 +1,3 @@
-<style>
-    pre {
-        overflow-y: auto;
-        max-height: 300px;
-    }
-</style>
 
 # Mojo 快速 memset
 
