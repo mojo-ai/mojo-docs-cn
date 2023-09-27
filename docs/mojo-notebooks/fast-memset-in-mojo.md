@@ -1,3 +1,7 @@
+pre {
+  overflow-y: auto;
+  max-height: 500px;
+}
 
 # Mojo 快速 memset
 
@@ -281,7 +285,7 @@ benchmark(memset_manual_2, "Manual memset v2")
 benchmark(memset_system, "Mojo system memset")
 ```
 
-<pre style="overflow-y: auto; max-height: 300px;"><code>
+```
 =====================
 Manual memset v2
 ---------------------
@@ -361,7 +365,7 @@ Size: 31   |************************************************************
 Size: 32   |***************************************************
 Size: 33   |***************************************************
 Size: 34   |***************************************************
-</code></pre>
+```
 
 这个16-32尺寸上的性能现在好多了！
 
@@ -524,7 +528,7 @@ benchmark(memset_system, "Mojo system memset")
 benchmark(memset_autotune, "Mojo autotune memset")
 ```
 
-<pre style="overflow-y: auto; max-height: 300px;"><code>
+```
 =====================
 Mojo manual memset
 ---------------------
@@ -684,4 +688,4 @@ Size: 31   |**********************************
 Size: 32   |**********************************
 Size: 33   |********************************************************************
 Size: 34   |********************************************************************
-</code></pre>
+```
