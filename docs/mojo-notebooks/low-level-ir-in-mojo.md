@@ -8,7 +8,17 @@ Mojo 是一种高级编程语言，其具有可扩展的现代特性。Mojo 还�
 
 为了说明这些想法，我们将在下面的 Mojo 中实现一个布尔类型，我们称之为 OurBool。我们将会广泛使用 MLIR，现在让我们从一个简短的入门开始。
 
-## 何为 MLIR?
+## 何为 MLIR ？
+
+MLIR is an intermediate representation of a program, not unlike an assembly language, in which a sequential set of instructions operate on in-memory values.
+
+More importantly, MLIR is modular and extensible. MLIR is composed of an ever-growing number of “dialects.” Each dialect defines operations and optimizations: for example, the ‘math’ dialect provides mathematical operations such as sine and cosine, the ‘amdgpu’ dialect provides operations specific to AMD processors, and so on.
+
+Each of MLIR’s dialects can interoperate with the others. This is why MLIR is said to unlock heterogeneous compute: as newer, faster processors and architectures are developed, new MLIR dialects are implemented to generate optimal code for those environments. Any new MLIR dialect can be translated seamlessly into other dialects, so as more get added, all existing MLIR becomes more powerful.
+
+This means that our own custom types, such as the OurBool type we’ll create below, can be used to provide programmers with a high-level, Python-like interface. But “under the covers,” Mojo and MLIR will optimize our convenient, high-level types for each new processor that appears in the future.
+
+There’s much more to write about why MLIR is such a revolutionary technology, but let’s get back to Mojo and defining the OurBool type. There will be opportunities to learn more about MLIR along the way.
 
 ## 定义`OurBool`类型
 

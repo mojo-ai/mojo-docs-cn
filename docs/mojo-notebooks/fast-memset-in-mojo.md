@@ -528,7 +528,7 @@ benchmark(memset_system, "Mojo system memset")
 benchmark(memset_autotune, "Mojo autotune memset")
 ```
 
-{% fold summary="查看结果" %}
+{% fold summary="查看结果（单击以显示/隐藏）" %}
 ```
 =====================
 Mojo manual memset
