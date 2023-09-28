@@ -258,3 +258,28 @@ main()
 > a: 1 b: 1
 > 
 > a: 1 b: 2
+
+## `async_parallelize`
+
+```python
+async_parallelize[func: fn(Int) capturing -> None](out_chain: OutputChainPtr, num_work_items: Int)
+```
+
+并行执行 func(0) … func(num_work_items-1) 作为子任务，并立即返回。只有当所有子任务完成时，out_chain 才会被标记为 ready。
+
+并行执行 func(0) … func(num_work_items-1) 作为子任务，并在所有函数返回时将 out_chain 标记为 ready。当子任务被调度但不一定完成时，此函数将返回。运行时可以以任意顺序和任意并发度执行子任务。
+
+func 中的所有自由变量必须是“异步安全”的。这意味着：- 变量必须由按值传递的函数参数（即没有 &）或 let 绑定绑定。- 变量的类型必须是“异步安全”的，即标记为 @register_passable，并且任何内部指针都指向至少在 out_chain 准备就绪之前的生命周期内的内存。实际上，这意味着只能指向由运行时保持活动状态的缓冲区的指针。如果此要求过于繁重，请考虑使用 sync_parallelize。
+
+如果 num_work_items 为 0，则在 async_parallelize 返回之前将 out_chain 标记为 ready。如果 num_work_items 为 1，则 func(0) 仍可以作为子任务执行。
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+  
+**Args**：
+
+- **out_chain** (`OutputChainPtr`)：要向其发出完成信号的 out_chain。
+  
+- **num_work_items** (`Int`): 并行任务的数量。
+
