@@ -42,6 +42,27 @@ map[func: fn(Int) capturing -> None](size: Int)
 
 - **size**（`Int`）: 元素的数量。
 
+
+示例：
+
+```python
+from algorithm import map
+
+fn main():    
+    fn stateful_nocapture(a: Int):
+        print(a + 1)
+        
+    map[stateful_nocapture](3)
+
+main()
+```
+> 1
+> 
+> 2
+> 
+> 3
+
+
 ## `unroll`
 
 ```python
@@ -56,7 +77,106 @@ unroll[count: Int, func: fn[Int]() capturing -> None]()
 
 - **func**（`fn[Int]() capturing -> None`）：要计算的函数。该函数应该接受一个整数参数。
 
+示例：
+
+```python
+from algorithm import unroll
+
+fn main():
+    fn stateful_nocapture[a: Int]():
+        print(a*a)
+        
+    unroll[3, stateful_nocapture]()
+    
+main()
+```
+
+> 0
+>
+> 1
+>
+> 4
+
+
 ```python
 unroll[dim0: Int, dim1: Int, func: fn[Int, Int]() capturing -> None]()
 ```
 
+重复计算一个函数 dim0 X dim1 次（二维嵌套循环）。
+
+**Parameters**：
+
+- **dim0**（`Int`）：第一维大小。
+
+- **dim1**（`Int`）：第二维大小。
+
+- **func**（`fn[Int, Int]() capturing -> None`）：要计算的函数，该函数应接受两个整数参数。
+
+示例：
+
+```python
+from algorithm import unroll
+
+fn main():
+    fn stateful_nocapture[a: Int, b: Int]():
+        print(a + b)
+        
+    unroll[2, 3, stateful_nocapture]()
+    
+main()
+```
+
+> 0
+> 
+> 1
+> 
+> 2
+> 
+> 1
+> 
+> 2
+> 
+> 3
+
+
+```python
+unroll[dim0: Int, dim1: Int, dim2: Int, func: fn[Int, Int, Int]() capturing -> None]()
+```
+
+重复计算一个函数 dim0 X dim1 X dim2 次（三维嵌套循环）。
+
+**Parameters**：
+
+- **dim0**（`Int`）：第一维大小。
+
+- **dim1**（`Int`）：第二维大小。
+
+- **dim2**（`Int`）：第三维大小。
+
+- **func**（`fn[Int, Int, Int]() capturing -> None`）：要计算的函数，该函数应接受三个整数参数。
+
+示例：
+
+```python
+from algorithm import unroll
+
+fn main():
+    fn stateful_nocapture[a: Int, b: Int, c: Int]():
+        print(a + b + c)
+        
+    unroll[1, 2, 3, stateful_nocapture]()
+    
+main()
+```
+
+> 0
+> 
+> 1
+> 
+> 2
+> 
+> 1
+> 
+> 2
+> 
+> 3
