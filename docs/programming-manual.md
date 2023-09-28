@@ -706,15 +706,15 @@ Python 最令人惊奇的功能之一是其可扩展的运行时元编程功能�
 
 让我们看一些简单的例子。
 
-**关于“参数”：** Python 开发人员可以互换地使用“arguments”和“parameters”这两个词来表示“传递到函数中的东西”。我们决定回收“parameter”和“parameter expression”，用来表示 Mojo 中的编译时值，并继续使用“argument”和“expression”来指代运行时值。这使我们能够围绕“parameterized”和“parametric”等词进行对齐，以进行编译时元编程。
+**关于“参数”：** Python 开发人员可以互换地使用“arguments”和“parameters”这两个词来表示“传递到函数中的东西”。我们决定回收“parameter”和“parameter expression”，用来表示 Mojo 中的编译时值，并继续使用“argument”和“expression”来指代运行时值。在编译时元编程描述中使用“parameterized”和“parametric”。
 
-### 定义参数化类型和函数[](#defining-parameterized-types-and-functions)
+### 定义参数化（parameterized）类型和函数[](#defining-parameterized-types-and-functions)
 
-您可以通过在方括号中指定参数名称和类型来参数化结构和函数（[使用 PEP695 语法](https://peps.python.org/pep-0695/)的扩展版本）。与参数值不同，参数值在编译时是已知的，这可以实现额外级别的抽象和代码重用，以及[自动调整](https://docs.modular.com/mojo/programming-manual.html#autotuning-adaptive-compilation)等编译器优化。
+您可以通过在方括号中指定参数名称和类型来参数化结构和函数（[使用 PEP695 语法](https://peps.python.org/pep-0695/)的扩展版本）。与实参（argument values）不同，形参（parameter values）在编译时是已知的，这可以实现更多的抽象和代码重用，以及[自动调整](https://docs.modular.com/mojo/programming-manual.html#autotuning-adaptive-compilation)等编译器优化。
 
-例如，让我们看一下 [SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) 类型，它表示硬件中保存标量数据类型的多个实例的低级向量寄存器。硬件加速器不断引入新的向量数据类型，甚至CPU也可能有512位或更长的SIMD向量。为了访问这些处理器上的 SIMD 指令，必须将数据整形为正确的 SIMD 宽度（数据类型）和长度（向量大小）。
+例如，[SIMD](https://en.wikipedia.org/wiki/Single_instruction,_multiple_data) 类型，它表示硬件中低级向量寄存器，该寄存器保存标量数据的多个实例。硬件加速器不断引入新的向量数据类型，甚至CPU也可能有512位或更长的SIMD向量。为了访问这些处理器上的 SIMD 指令，必须将数据整形为正确的 SIMD 宽度（数据类型）和长度（向量大小）。
 
-然而，用 Mojo 的内置类型定义所有不同的 SIMD 变体是不可行的。因此，Mojo 的`SIMD`类型（定义为结构）在其方法中公开了常见的 SIMD 操作，并使 SIMD 数据类型和大小值参数化。这使您可以将数据直接映射到任何硬件上的 SIMD 向量。
+然而，用 Mojo 的内置类型定义所有不同的 SIMD 变体是不可行的。因此，Mojo 的`SIMD`类型（定义为结构）在其方法中暴露了常见的 SIMD 操作，并使 SIMD 数据类型和大小形参化。这使您可以将数据直接映射到任何硬件上的 SIMD 向量。
 
 这是 Mojo 类型定义的精简（非功能）版本`SIMD`：
 
@@ -736,18 +736,18 @@ struct SIMD[type: DType, size: Int]:
     fn __add__(self, rhs: Self) -> Self: ...
 ```
 
-使用参数定义每个 SIMD 变体非常有利于代码重用，因为该`SIMD`类型可以静态地表达所有不同的向量变体，而不需要语言预先定义每个变体。
+使用形参定义每个 SIMD 变体非常有利于代码重用，因为该`SIMD`类型可以静态地表达所有不同的向量变体，而不需要语言预先定义每个变体。
 
-因为`SIMD`是参数化类型，所以`self`其函数中的实参携带这些参数——完整的类型名称是`SIMD[type, size]`。尽管将其写出是有效的（如 的返回类型所示`splat()`），但这可能会很冗长，因此我们建议像示例一样使用该`Self`类型（来自 [PEP673](https://peps.python.org/pep-0673/)）`__add__`。
+因为`SIMD`是形参类型，所以其函数中的`self`值会包含这些参数——完整的类型名称是`SIMD[type, size]`。尽管将其写出是有效的（如`splat()`中返回类型所示），但这可能会很冗长，因此我们建议像`__add__`示例一样使用该`Self`类型（来自 [PEP673](https://peps.python.org/pep-0673/)）。
 
 ### 参数重载[](#overloading-on-parameters)
 
 函数和方法可以在其参数签名上重载。重载决策逻辑根据以下规则（按优先顺序）过滤候选者：
 
-1. 具有最少数量隐式转换（在实参和参数中）的候选者。
-2. 没有可变参数的候选人。
-3. 没有可变参数的候选者。
-4. 具有最短参数签名的候选者。
+1. 具有最少数量隐式转换（在实参和形参中）。
+2. 没有可变实参。
+3. 没有可变形参。
+4. 具有最短参数签名。
 
 如果应用这些规则后存在多个候选者，则重载决策将失败。例如：
 
@@ -799,7 +799,7 @@ bar[*a: Int](b: Int)
 
 ### 使用参数化类型和函数[](#using-parameterized-types-and-functions)
 
-您可以通过将值传递给方括号中的参数来实例化参数类型和函数。例如，对于`SIMD`上面的类型，`type`指定数据类型并`size`指定SIMD向量的长度（必须是2的幂）：
+您可以通过将值传递给方括号中的参数来实例化参数类型和函数。例如，对于`SIMD`上面的类型，`type`指定数据类型而`size`指定SIMD向量的长度（必须是2的幂）：
 
 ```
 # Make a vector of 4 floats.
@@ -823,9 +823,9 @@ small_vec type: float32 length: 4
 bigger_vec2 type: float32 length: 32
 ```
 
-请注意，该`cast()`方法还需要一个参数来指定您想要的类型转换（上面的方法定义需要一个`target`参数值）。`SIMD`因此，就像结构是泛型类型定义一样，`cast()`方法也是泛型方法定义，它根据参数值在编译时而不是运行时实例化。
+请注意，该`cast()`方法还需要一个参数来指定您想要的类型转换（上面的方法定义需要一个`target`参数值）。因此，就像`SIMD`结构是泛型类型定义一样，`cast()`方法也是泛型方法定义，它根据参数值在编译时而不是运行时实例化。
 
-上面的代码显示了具体类型的使用（即，它`SIMD`使用已知类型值进行实例化），但参数的主要功能来自于定义参数算法和类型（使用参数值的代码）的能力。例如，以下是如何定义与`SIMD`类型和宽度无关的参数算法：
+上面的代码显示了具体类型的使用（使用已知类型值实例化`SIMD`），但参数的主要功能用于定义参数算法和类型（使用参数值的代码）。例如，以下是如何定义与`SIMD`类型和宽度无关的参数算法：
 
 ```
 from math import sqrt
@@ -840,13 +840,13 @@ print(rsqrt[DType.float16, 4](42))
 [0.154296875, 0.154296875, 0.154296875, 0.154296875]
 ```
 
-请注意，`x`参数实际上是`SIMD`基于函数参数的类型。运行时程序可以使用参数的值，因为参数在运行时程序需要它们之前在编译时解析（但编译时参数表达式不能使用运行时值）。
+请注意，`x`参数实际上是基于函数参数的`SIMD`类型。运行时程序可以使用参数的值，因为参数在编译时解析，这个发生在运行时程序需要之前（但编译时参数表达式不能使用运行时值）。
 
-Mojo 编译器对于参数的类型推断也很智能。请注意，上述函数无需[`sqrt()`](https://docs.modular.com/mojo/MojoStdlib/Math.html#sqrt)指定参数即可调用参数函数 - 编译器会推断其参数，就像您`sqrt[type, simd_width](x)`显式编写一样。另请注意，`rsqrt()`选择定义其第一个参数 name ，`width`即使`SIMD`类型将其命名为 it `size`，也没有问题。
+Mojo 编译器对于参数的类型推断也很智能。请注意，上述函数无需[`sqrt()`](https://docs.modular.com/mojo/MojoStdlib/Math.html#sqrt)指定参数即可调用参数函数：编译器会推断其参数，就像您`sqrt[type, simd_width](x)`显式编写一样。另请注意，`rsqrt()`选择定义其第一个参数命名为`width` ，即使`SIMD`类型将其命名为 `size`，这也没有问题。
 
 ### 参数表达式只是 Mojo 代码[](#parameter-expressions-are-just-mojo-code)
 
-`a+b`参数表达式是出现在需要参数的位置的任何代码表达式（例如）。参数表达式支持运算符和函数调用，就像运行时代码一样，并且所有参数类型都使用与运行时程序相同的类型系统（例如`Int`和`DType`）。
+参数表达式是出现在需要参数的位置的任何代码表达式（例如`a+b`）。参数表达式支持运算符和函数调用，就像运行时代码一样，并且所有参数类型都使用与运行时程序相同的类型系统（例如`Int`和`DType`）。
 
 由于参数表达式使用与运行时 Mojo 代码相同的语法和类型，因此您可以使用许多“依赖类型”功能。例如，您可能想要定义一个辅助函数来连接两个 SIMD 向量：
 
@@ -871,11 +871,11 @@ print('result type:', x.element_type, 'length:', len(x))
 result type: float32 length: 4
 ```
 
-请注意，结果长度是输入向量长度的总和，您可以通过简单的`+`操作来表达它。对于更复杂的示例，请看一下[`SIMD.shuffle()`](https://docs.modular.com/mojo/MojoStdlib/SIMD.html#shuffle)标准库中的方法：它接受两个输入 SIMD 值、一个向量洗牌掩码作为列表，并返回一个与洗牌掩码长度匹配的 SIMD。
+请注意，结果长度是输入向量长度的总和，您可以通过简单的`+`操作来表达它。对于更复杂的示例，请查看[`SIMD.shuffle()`](https://docs.modular.com/mojo/MojoStdlib/SIMD.html#shuffle)标准库中的方法：它接受两个输入 SIMD 值、一个向量洗牌掩码作为列表，并返回一个与洗牌掩码长度匹配的 SIMD。
 
 ### 强大的编译时编程[](#powerful-compile-time-programming)
 
-虽然简单的表达式很有用，但有时您希望使用控制流编写命令式编译时逻辑。例如，`isclose()`Mojo`Math`模块中的函数对整数使用精确相等，但对浮点使用“接近”比较。您甚至可以进行编译时递归。例如，下面是一个示例“树缩减”算法，它将向量的所有元素递归地求和为标量：
+虽然简单的表达式很有用，但有时您希望通过控制流编写命令式编译时逻辑。例如，Mojo`Math`模块中的`isclose()`函数对整数使用精确相等，但对浮点使用“接近”比较。您甚至可以进行编译时递归。例如，下面是一个示例“树缩减”算法，它将向量的所有元素递归地求和为标量：
 
 ```
 fn slice[ty: DType, new_size: Int, size: Int](
@@ -908,7 +908,7 @@ print("Elements sum:", reduce_add[DType.index, 4](x))
 Elements sum: 10
 ```
 
-这利用了该`@parameter if`功能，即`if`在编译时运行的语句。它要求其条件是有效的参数表达式，并确保只有语句的实时分支`if`被编译到程序中。
+这利用了该`@parameter if`功能，即`在编译时运行的if`语句。它要求其条件是有效的参数表达式，并确保只有`if`语句的实时分支被编译到程序中。
 
 ### Mojo 类型只是参数表达式[](#mojo-types-are-just-parameter-expressions)
 
