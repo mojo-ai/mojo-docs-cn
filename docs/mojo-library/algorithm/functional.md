@@ -383,9 +383,9 @@ tile[workgroup_function: fn[Int](Int) capturing -> None, tile_size_list: Variadi
 
 以指定的 tile 大小启动工作组的生成器。
 
-一个工作组函数是一个可以处理可配置的连续 “tile” 工作负载的函数。例如，work_on[3](5) 应该在项 5，6，7 上启动计算，并且在语义上等同于work_on[1](5)，work_on[1](6)，work_on[1](7)。
+一个工作组函数是一个可以处理可配置的连续 “tile” 工作负载的函数。例如，work_on\[3\](5) 应该在项 5，6，7 上启动计算，并且在语义上等同于work_on\[1\](5)，work_on\[1\](6)，work_on\[1\](7)。
 
-这个生成器将尝试按照给定的 tile 大小列表顺序进行处理。例如，tile[func, (3,2,1)](offset, upperbound) 将尝试从偏移量开始调用 func[3]，直到剩余的工作量从上限减少到小于3，然后尝试 func[2]，然后尝试 func[1]，以此类推。 
+这个生成器将尝试按照给定的 tile 大小列表顺序进行处理。例如，tile\[func, (3,2,1)\](offset, upperbound) 将尝试从偏移量开始调用 func\[3\]，直到剩余的工作量从上限减少到小于3，然后尝试 func\[2\]，然后尝试 func\[1\]，以此类推。 
 
 **Parameters**：
 
