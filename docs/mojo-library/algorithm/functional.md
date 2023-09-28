@@ -375,4 +375,46 @@ parallelize[func: fn(Int) capturing -> None](rt: Runtime, num_work_items: Int, n
 
 - **num_workers** (`Int`)：执行时使用的工作数量。
 
+## `tile`
 
+```python
+tile[workgroup_function: fn[Int](Int) capturing -> None, tile_size_list: VariadicList[Int]](offset: Int, upperbound: Int)
+```
+
+以指定的 tile 大小启动工作组的生成器。
+
+一个工作组函数是一个可以处理可配置的连续 “tile” 工作负载的函数。例如，work_on[3](5) 应该在项 5，6，7 上启动计算，并且在语义上等同于work_on[1](5)，work_on[1](6)，work_on[1](7)。
+
+这个生成器将尝试按照给定的 tile 大小列表顺序进行处理。例如，tile[func, (3,2,1)](offset, upperbound) 将尝试从偏移量开始调用 func[3]，直到剩余的工作量从上限减少到小于3，然后尝试 func[2]，然后尝试 func[1]，以此类推。 
+
+**Parameters**：
+
+- **workgroup_function** (`fn[Int](Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+
+- **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
+
+**Args**：
+
+- **offset** (`Int`)：从哪个初始索引开始工作。
+  
+- **upperbound** (`Int`)：工作函数不应超过的运行时上限。
+
+```python
+tile[workgroup_function: fn(Int, Int) capturing -> None](offset: Int, upperbound: Int, tile_size_list: VariadicList[Int])
+```
+
+一个在指定的 tile 大小列表中启动工作组的生成器。
+
+这是 tile 生成器的版本，适用于工作组函数可以将 tile 大小作为运行时值的情况。
+
+**Parameters**：
+
+- **workgroup_function** (`fn(Int, Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+
+**Args**：
+
+- **offset** (`Int`)：从哪个初始索引开始工作。
+  
+- **upperbound** (`Int`)：工作函数不应超过的运行时上限。
+  
+- **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
