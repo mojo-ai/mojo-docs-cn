@@ -47,7 +47,7 @@ let a: OurBool
 let a = OurBool() # error: 'OurBool' does not implement an '__init__' method
 ```
 
-与 Python 一样，`__init__`是一种 [特殊方法]（https://docs.python.org/3/reference/datamodel.html#specialnames），它可用于自定义一种类型的行为。我们可以实现一个不带参数的`__init__`方法，其返回一个带有“false”值的`OurBool`。
+与 Python 一样，`__init__`是一种[特殊方法](https://docs.python.org/3/reference/datamodel.html#specialnames)，它可用于自定义一种类型的行为。我们可以实现一个不带参数的`__init__`方法，其返回一个带有“false”值的`OurBool`。
 
 ```python
 struct OurBool:
@@ -59,7 +59,7 @@ struct OurBool:
         ]()
 ```
 
-为了初始化底层的 'i1' 值，我们使用来自 ['index' 方言](https://mlir.llvm.org/docs/Dialects/IndexOps/) 的 MLIR 操作，其称之为 [`index.bool.constant`](https://mlir.llvm.org/docs/Dialects/IndexOps/#indexboolconstant-mlirindexboolconstantop)。
+为了初始化底层的 'i1' 值，我们使用来自['index'方言](https://mlir.llvm.org/docs/Dialects/IndexOps/)的 MLIR 操作，其称之为[`index.bool.constant`](https://mlir.llvm.org/docs/Dialects/IndexOps/#indexboolconstant-mlirindexboolconstantop)。
 
 MLIR 的 'index' 方言为我们提供了操作内置 MLIR 类型的操作，例如我们用来存储`OurBool`值的`i1`。`index.bool.constant`操作将`true`或`false`编译时常量作为输入，并使用给定值生成类型为`i1`的运行时输出。
 
@@ -209,13 +209,9 @@ if g: print("It's true!")
 
 ## 避免使用`__mlir_i1__`进行类型转换
 
-Our `OurBool` type is looking great, and by providing a conversion to `Bool`, it can be used anywhere the builtin `Bool` type can. But in the last section we promised you “full control,” the ability to define your own version of any type built into Mojo or its standard library. Surely `Bool` doesn’t implement `__bool__` to convert itself into `Bool`?
-
 我们的`OurBool`类型看起来很棒，通过提供`Bool`转换，它可以在任何使用内置`Bool`类型的地方使用`OurBool`。但是在上一节中，我们向您承诺可具有“完全控制”的能力，即：能够自定义 Mojo 或其标准库中内置任何类型。确认`Bool`不会实现`__bool__`以将自己转换为`Bool`吗？
 
 确实不会这么做：当 Mojo 计算条件表达式时，它实际上尝试通过搜索特殊的接口方法`__mlir_i1__`将其转换为一个 MLIR i1 值（自动转换为`Bool`是因为`Bool`已实现了`__mlir_i1__`方法）。
-
-Again, Mojo is designed to be extensible and modular. By implementing all the special methods `Bool` does, we can create a type that can replace it entirely. Let’s do so by implementing `__mlir_i1__` on `OurBool`:
 
 同时，Mojo 被设计为可扩展和模块化。通过实现所有`Bool`的特殊方法，我们可以创建一个完全替换它的类型。让我们通过在`OurBool`上实现`__mlir_i1__`来实现：
 
