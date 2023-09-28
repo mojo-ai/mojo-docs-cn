@@ -283,3 +283,22 @@ func 中的所有自由变量必须是“异步安全”的。这意味着：- �
   
 - **num_work_items** (`Int`): 并行任务的数量。
 
+## `sync_parallelize`
+
+```python
+sync_parallelize[func: fn(Int) capturing -> None](out_chain: OutputChainPtr, num_work_items: Int)
+```
+
+并行执行 func(0) ... func(num_work_items-1) 作为子任务。当所有子任务完成时，标记 out_chain 为就绪并返回。
+
+在并行中执行 func(0) ... func(num_work_items-1) 作为子任务，并且只有当它们全部返回时才返回。运行时可以以任何顺序和任何并发度执行子任务。在返回之前，out_chain 将被标记为就绪。
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+
+**Args**：
+
+- **out_chain** (`OutputChainPtr`)：要向其发出完成信号的 out_chain。
+  
+- **num_work_items** (`Int`): 并行任务的数量。
