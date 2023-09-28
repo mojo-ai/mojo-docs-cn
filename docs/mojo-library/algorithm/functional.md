@@ -180,3 +180,41 @@ main()
 > 2
 > 
 > 3
+
+## `vectorize`
+
+```python
+vectorize[simd_width: Int, func: fn[Int](Int) capturing -> None](size: Int)
+```
+
+以 simd 方式将一个参数化为 simd_width 的函数映射到从 0 到 size 的范围上。
+
+**Parameters**：
+
+- **simd_width**（`Int`）: SIMD向量的宽度。
+
+- **func**（`fn[Int](Int) capturing -> None`）：循环体的函数。
+
+**Args**：
+
+- **size**（`Int`）：总循环次数。
+
+示例：
+
+```python
+from algorithm import vectorize
+
+fn main():
+    fn stateful_nocapture[simd_width: Int](size: Int):
+        print("simd_width:", simd_width, "size:", size)
+        
+    vectorize[4, stateful_nocapture](3)
+    
+main()
+```
+
+> simd_width: 1 size: 0
+> 
+> simd_width: 1 size: 1
+> 
+> simd_width: 1 size: 2
