@@ -205,16 +205,56 @@ vectorize[simd_width: Int, func: fn[Int](Int) capturing -> None](size: Int)
 from algorithm import vectorize
 
 fn main():
-    fn stateful_nocapture[simd_width: Int](size: Int):
-        print("simd_width:", simd_width, "size:", size)
+    fn stateful_nocapture[a: Int](b: Int):
+        print("a:", a, "b:", b)
         
     vectorize[4, stateful_nocapture](3)
     
 main()
 ```
 
-> simd_width: 1 size: 0
+> a: 1 b: 0
 > 
-> simd_width: 1 size: 1
+> a: 1 b: 1
 > 
-> simd_width: 1 size: 2
+> a: 1 b: 2
+
+## `vectorize_unroll`
+
+```python
+vectorize_unroll[simd_width: Int, unroll_factor: Int, func: fn[Int](Int) capturing -> None](size: Int)
+```
+
+将一个参数化在 simd_width 上的函数映射到从 0 到 size 的范围上，并以 simd 方式展开循环，展开因子为 unroll_factor。
+
+**Parameters**：
+
+- **simd_width** (Int)：SIMD向量的宽度。
+
+- **unroll_factor** (Int)：主循环的展开因子。
+
+- **func** (`fn[Int](Int) capturing -> None`)：循环体的函数。
+  
+**Args**:
+
+- **size** (`Int`)：总循环次数。
+
+示例：
+
+```python
+from algorithm import vectorize_unroll
+
+fn main():
+    fn stateful_nocapture[a: Int](b: Int):
+        print("a:", a, "b:", b)
+        
+    vectorize_unroll[4, 2, stateful_nocapture](3)
+    
+main()
+```
+
+> a: 1 b: 0
+> 
+> a: 1 b: 1
+> 
+> a: 1 b: 2
