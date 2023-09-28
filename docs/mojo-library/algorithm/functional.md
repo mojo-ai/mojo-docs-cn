@@ -302,3 +302,77 @@ sync_parallelize[func: fn(Int) capturing -> None](out_chain: OutputChainPtr, num
 - **out_chain** (`OutputChainPtr`)：要向其发出完成信号的 out_chain。
   
 - **num_work_items** (`Int`): 并行任务的数量。
+
+## `parallelize`
+
+```python
+parallelize[func: fn(Int) capturing -> None]()
+```
+
+并行执行 func(0) ... func(N-1) 作为子任务，并且当所有子任务完成时返回。N 被选择为系统上的处理器数量。
+
+在并行中执行 func(0) ... func(N-1) 作为子任务。此函数只有在所有子任务完成后才会返回。
+
+*注意：创建并销毁本地运行时（local runtime）！不要在内核中使用！*
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+
+```python
+parallelize[func: fn(Int) capturing -> None](num_work_items: Int)
+```
+
+在并行中执行 func(0) ... func(num_work_items-1) 作为子任务，并在所有子任务完成后返回。
+
+将func(0) ... func(num_work_items-1) 作为子任务并行执行。只有在所有子任务完成后，该函数才会返回。
+
+*注意：创建并销毁本地运行时（local runtime）！不要在内核中使用！*
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+
+**Args**：
+
+- **num_work_items** (`Int`): 并行任务的数量。
+
+```python
+parallelize[func: fn(Int) capturing -> None](rt: Runtime, num_work_items: Int)
+```
+
+在并行中执行 func(0) ... func(num_work_items-1) 作为子任务，并在所有子任务完成后返回。
+
+将 func(0) ... func(num_work_items-1) 作为子任务并行执行。只有在所有子任务完成后，该函数才会返回。
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+
+**Args**：
+
+- **rt** (`Runtime`)：运行时（The runtime）。
+  
+- **num_work_items** (`Int`): 并行任务的数量。
+
+```python
+parallelize[func: fn(Int) capturing -> None](rt: Runtime, num_work_items: Int, num_workers: Int)
+```
+
+将func(0) ... func(num_work_items-1) 作为子任务并行执行，并在所有子任务完成后返回。
+
+将func(0) ... func(num_work_items-1)作为子任务并行执行。只有在所有子任务完成后，此函数才会返回。
+
+**Parameters**：
+
+- **func** (`fn(Int) capturing -> None`): 要调用的函数。
+
+**Args**：
+
+- **rt** (`Runtime`)：运行时（The runtime）。
+
+- **num_work_items** (`Int`): 并行任务的数量。
+
+- **num_workers** (`Int`)：执行时使用的工作数量。
+
+
