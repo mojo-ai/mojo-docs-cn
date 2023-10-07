@@ -571,3 +571,48 @@ tile_and_unswitch[workgroup_function: fn[Bool](Int, Int, Int) capturing -> None]
 
 - **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
 
+## `elementwise`
+
+```python
+elementwise[rank: Int, simd_width: Int, func: fn[Int, Int](StaticIntTuple[*(0,1)]) capturing -> None](shape: StaticIntTuple[rank], out_chain: OutputChainPtr)
+```
+
+执行 `func[width，rank]（indices）` 作为适当的 width 和 indices 组合的子任务，以覆盖 shape 。
+
+**Parameters**：
+
+- **rank** (`Int`)：缓冲区的 rank 。
+
+- **simd_width** (`Int`)：使用的 SIMD 向量宽度。
+  
+- **func** (`fn[Int, Int](StaticIntTuple[*(0,1)]) capturing -> None`)：函数体。
+  
+**Args**：
+
+- **shape** (`StaticIntTuple[rank]`)：缓冲区的 shape 。
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到输出链中。
+
+## `parallelize_over_rows`
+
+```python
+parallelize_over_rows[rank: Int, func: fn(Int, Int) capturing -> None](shape: StaticIntTuple[rank], axis: Int, out_chain: OutputChainPtr, grain_size: Int)
+```
+
+并行化函数在形状的 non-axis 维度上。
+
+**Parameters**：
+
+- **rank** (`Int`)：形状的秩。
+  
+- **func** (`fn(Int, Int) capturing -> None`)：对行范围调用的函数。
+
+**Args**：
+
+- **shape** (`StaticIntTuple[rank]`)：并行化的形状。
+
+- **axis** (`Int`)：行是沿着形状的轴维度的切片。
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到输出链中。
+
+- **grain_size** (`Int`)：使用额外线程的最小元素数量。
