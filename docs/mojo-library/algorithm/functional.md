@@ -423,15 +423,15 @@ tile[workgroup_function: fn(Int, Int) capturing -> None](offset: Int, upperbound
 tile[secondary_tile_size_list: VariadicList[Int], secondary_cleanup_tile: Int, workgroup_function: fn[Int](Int, Int) capturing -> None](offset: Int, upperbound: Int, primary_tile_size_list: VariadicList[Int], primary_cleanup_tile: Int)
 ```
 
-一个生成器，用于启动指定 title 大小列表中的工作组，直到 primary_tile_size 的总和超过上限。
+一个生成器，它在指定的 tile 大小列表中启动工作组，直到主要 tile 大小的总和超过上限。
 
 **Parameters**：
 
-- **secondary_tile_size_list** (`VariadicList[Int]`)：要启动工作的静态 title 大小列表。
+- **secondary_tile_size_list** (`VariadicList[Int]`)：启动工作的静态 tile 大小列表。
 
-- **secondary_cleanup_tile** (`Int`)：当主 title 大小不完全符合上限时使用的最后一个静态 title。
+- **secondary_cleanup_tile** (`Int`)：当主要 title 大小不完全适应上限时使用的最后一个静态 tile。
 
-- **workgroup_function** (`fn[Int](Int, Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+- **workgroup_function** (`fn[Int](Int, Int) capturing -> None`)：工作负载的一个 tile 的工作组函数。
 
 **Args**：
 
@@ -441,13 +441,13 @@ tile[secondary_tile_size_list: VariadicList[Int], secondary_cleanup_tile: Int, w
 
 - **primary_tile_size_list** (`VariadicList[Int]`)：启动工作的动态 tile 大小列表。
   
-- **primary_cleanup_tile** (`Int`)：当主 title 大小不完全符合上限时使用的最后一个动态 title。
+- **primary_cleanup_tile** (`Int`)：当主要 tile 大小不完全适应上限时使用的最后一个动态 tile。
 
 ```python
 tile[workgroup_function: fn[Int, Int](Int, Int) capturing -> None, tile_sizes_x: VariadicList[Int], tile_sizes_y: VariadicList[Int]](offset_x: Int, offset_y: Int, upperbound_x: Int, upperbound_y: Int)
 ```
 
-从 x 和 y 偏移开始，使用每个维度中可能的最大 title 大小启动 workgroup_function，直到达到 x 和 y 的上限。
+从 x 和 y 偏移开始，使用每个维度中可能的最大 tile 大小启动 workgroup_function，直到达到 x 和 y 的上限。
 
 **Parameters**：
 
@@ -466,3 +466,66 @@ tile[workgroup_function: fn[Int, Int](Int, Int) capturing -> None, tile_sizes_x:
 - **upperbound_x** (`Int`)：传递给 workgroup_function 的最大 x 偏移量。
   
 - **upperbound_y** (`Int`)：传递给 workgroup_function 的最大 y 偏移量。
+
+## `unswitch`
+
+```python
+unswitch[switched_func: fn[Bool]() capturing -> None](dynamic_switch: Bool)
+```
+
+执行 unswitch 转换。
+
+Unswitch是一种简单的模式，类似于循环unswitching pass，但扩展到了功能模式。该模式有助于以下代码转换，从而减少生成代码中的分支数量。
+
+Before：
+
+```python
+for i in range(...)
+    if i < xxx:
+        ...
+```
+
+After:
+
+```python
+if i < ...
+    for i in range(...)
+        ...
+else
+    for i in range(...)
+        if i < xxx:
+            ...
+```
+
+该 unswitch 函数通过元参数将该模式泛化，并可用于执行循环 unswitching 和其他类似 simd 和 amx 的瓦片谓词提升。
+
+TODO: 
+
+- 泛化以支持多个谓词。
+
+- 一旦嵌套的 lambda 表达式组合得当，应该能够轻松地使 unswitch 与 tile 组合起来。
+
+**Parameters**：
+
+- **switched_func** (`fn[Bool]() capturing -> None`)：包含可以 unswitched 的内部循环逻辑的函数。
+
+**Args**：
+
+-**dynamic_switch** (`Bool`)：动态条件，使 unswitched 的代码路径生效。
+
+```python
+unswitch[switched_func: fn[Bool, Bool]() capturing -> None](dynamic_switch_a: Bool, dynamic_switch_b: Bool)
+```
+
+执行 2-predicates 的 unswitch 转换。
+
+**Parameters**：
+
+- **switched_func** (`fn[Bool, Bool]() capturing -> None`)：The function containing the inner loop logic that has 2 predicates which can be unswitched.
+
+**Args**：
+
+- **dynamic_switch_a** (`Bool`)：第一个动态条件，使外部 unswitched 代码路径生效。
+
+- **dynamic_switch_b** (`Bool`)：第二个动态条件，使内部 unswitched 代码路径生效。
+
