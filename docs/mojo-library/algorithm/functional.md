@@ -473,7 +473,7 @@ tile[workgroup_function: fn[Int, Int](Int, Int) capturing -> None, tile_sizes_x:
 unswitch[switched_func: fn[Bool]() capturing -> None](dynamic_switch: Bool)
 ```
 
-执行 unswitch 转换。
+执行 unswitch 功能转换。
 
 Unswitch是一种简单的模式，类似于循环unswitching pass，但扩展到了功能模式。该模式有助于以下代码转换，从而减少生成代码中的分支数量。
 
@@ -517,7 +517,7 @@ TODO:
 unswitch[switched_func: fn[Bool, Bool]() capturing -> None](dynamic_switch_a: Bool, dynamic_switch_b: Bool)
 ```
 
-执行 2-predicates 的 unswitch 转换。
+执行 2-predicates 的 unswitch 功能转换。
 
 **Parameters**：
 
@@ -528,4 +528,46 @@ unswitch[switched_func: fn[Bool, Bool]() capturing -> None](dynamic_switch_a: Bo
 - **dynamic_switch_a** (`Bool`)：第一个动态条件，使外部 unswitched 代码路径生效。
 
 - **dynamic_switch_b** (`Bool`)：第二个动态条件，使内部 unswitched 代码路径生效。
+
+## `tile_and_unswitch`
+
+```python
+tile_and_unswitch[workgroup_function: fn[Int, Bool](Int, Int) capturing -> None, tile_size_list: VariadicList[Int]](offset: Int, upperbound: Int)
+```
+
+执行 time 和 unswitch 功能转换。
+
+一个可以 unswitched 的工作组函数的静态 tile 的变体。此生成器是 tile 和 unswitch 的融合版本，其中静态 unswitch 在工作负载的“内部”部分始终为真，并且仅在剩余 tile 上为假。
+
+**Parameters**：
+
+- **workgroup_function** (`fn[Int, Bool](Int, Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+
+- **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
+
+**Args**：
+
+- **offset** (`Int`)：从哪个初始索引开始工作。
+
+- **upperbound** (`Int`)：工作函数不应超过的运行时上限。
+
+```python
+tile_and_unswitch[workgroup_function: fn[Bool](Int, Int, Int) capturing -> None](offset: Int, upperbound: Int, tile_size_list: VariadicList[Int])
+```
+
+执行 time 和 unswitch 功能转换。
+
+一个可以 unswitched 的工作组函数的动态 tile 的变体。此生成器是 tile 和 unswitch 的融合版本，其中静态 unswitch 在工作负载的“内部”部分始终为真，并且仅在剩余 tile 上为假。
+
+**Parameters**：
+
+- **workgroup_function** (`fn[Bool](Int, Int, Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+
+**Args**：
+
+- **offset** (`Int`)：从哪个初始索引开始工作。
+
+- **upperbound** (`Int`)：工作函数不应超过的运行时上限。
+
+- **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
 
