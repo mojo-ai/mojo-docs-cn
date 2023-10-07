@@ -418,3 +418,51 @@ tile[workgroup_function: fn(Int, Int) capturing -> None](offset: Int, upperbound
 - **upperbound** (`Int`)：工作函数不应超过的运行时上限。
   
 - **tile_size_list** (`VariadicList[Int]`)：启动工作的 tile 大小列表。
+
+```python
+tile[secondary_tile_size_list: VariadicList[Int], secondary_cleanup_tile: Int, workgroup_function: fn[Int](Int, Int) capturing -> None](offset: Int, upperbound: Int, primary_tile_size_list: VariadicList[Int], primary_cleanup_tile: Int)
+```
+
+一个生成器，用于启动指定 title 大小列表中的工作组，直到 primary_tile_size 的总和超过上限。
+
+**Parameters**：
+
+- **secondary_tile_size_list** (`VariadicList[Int]`)：要启动工作的静态 title 大小列表。
+
+- **secondary_cleanup_tile** (`Int`)：当主 title 大小不完全符合上限时使用的最后一个静态 title。
+
+- **workgroup_function** (`fn[Int](Int, Int) capturing -> None`)：工作组函数，用于处理一个 tile 的工作负载。
+
+**Args**：
+
+- **offset** (`Int`)：从哪个初始索引开始工作。
+
+- **upperbound** (`Int`)：工作函数不应超过的运行时上限。
+
+- **primary_tile_size_list** (`VariadicList[Int]`)：启动工作的动态 tile 大小列表。
+  
+- **primary_cleanup_tile** (`Int`)：当主 title 大小不完全符合上限时使用的最后一个动态 title。
+
+```python
+tile[workgroup_function: fn[Int, Int](Int, Int) capturing -> None, tile_sizes_x: VariadicList[Int], tile_sizes_y: VariadicList[Int]](offset_x: Int, offset_y: Int, upperbound_x: Int, upperbound_y: Int)
+```
+
+从 x 和 y 偏移开始，使用每个维度中可能的最大 title 大小启动 workgroup_function，直到达到 x 和 y 的上限。
+
+**Parameters**：
+
+- **workgroup_function** (`fn[Int, Int](Int, Int) capturing -> None`)：为每个 title 和 offset 调用的函数。
+
+- **tile_sizes_x** (`VariadicList[Int]`)：用于 workgroup_function 的第一个参数的 title 大小列表。
+
+- **tile_sizes_y** (`VariadicList[Int]`)：用于 workgroup_function 的第二个参数的 title 大小列表。
+
+**Args**：
+
+- **offset_x** (`Int`)：传递给 workgroup_function 的初始 x 偏移量。
+
+- **offset_y** (`Int`)：传递给 workgroup_function 的初始 y 偏移量。
+
+- **upperbound_x** (`Int`)：传递给 workgroup_function 的最大 x 偏移量。
+  
+- **upperbound_y** (`Int`)：传递给 workgroup_function 的最大 y 偏移量。
