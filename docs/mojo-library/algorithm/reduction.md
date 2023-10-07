@@ -2,7 +2,7 @@
 
 实现 SIMD 归约。
 
-你可以从 algorithm 包中导入这些API。例如：
+你可以从 algorithm 包中导入这些 API。例如：
 
 ```python
 from algorithm import map_reduce
@@ -34,7 +34,7 @@ map_reduce[simd_width: Int, size: Dim, type: DType, acc_type: DType, input_gen_f
 
 **Args**：
 
-- **dst** (`Buffer[size, type]`)：输出buffer。
+- **dst** (`Buffer[size, type]`)：输出 buffer。
 
 - **init** (`SIMD[acc_type, 1]`)：在累加器中使用的初始值。
 
