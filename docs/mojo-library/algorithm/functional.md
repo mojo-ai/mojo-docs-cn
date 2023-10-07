@@ -2,7 +2,7 @@
 
 实现高阶函数。
 
-你可以从 `algorithm` 包中导入这些API。例如：
+你可以从 `algorithm` 包中导入这些 API。例如：
 
 ```python
 from algorithm import map
@@ -32,7 +32,7 @@ from algorithm import map
 map[func: fn(Int) capturing -> None](size: Int)
 ```
 
-将一个函数映射到从0到size的范围上。
+将一个函数映射到从 0 到 size 的范围上。
 
 **Parameters**：
 
@@ -191,7 +191,7 @@ vectorize[simd_width: Int, func: fn[Int](Int) capturing -> None](size: Int)
 
 **Parameters**：
 
-- **simd_width**（`Int`）: SIMD向量的宽度。
+- **simd_width**（`Int`）: SIMD 向量的宽度。
 
 - **func**（`fn[Int](Int) capturing -> None`）：循环体的函数。
 
@@ -229,7 +229,7 @@ vectorize_unroll[simd_width: Int, unroll_factor: Int, func: fn[Int](Int) capturi
 
 **Parameters**：
 
-- **simd_width** (Int)：SIMD向量的宽度。
+- **simd_width** (Int)：SIMD 向量的宽度。
 
 - **unroll_factor** (Int)：主循环的展开因子。
 
@@ -325,7 +325,7 @@ parallelize[func: fn(Int) capturing -> None](num_work_items: Int)
 
 在并行中执行 func(0) ... func(num_work_items-1) 作为子任务，并在所有子任务完成后返回。
 
-将func(0) ... func(num_work_items-1) 作为子任务并行执行。只有在所有子任务完成后，该函数才会返回。
+将 func(0) ... func(num_work_items-1) 作为子任务并行执行。只有在所有子任务完成后，该函数才会返回。
 
 *注意：创建并销毁本地运行时（local runtime）！不要在内核中使用！*
 
@@ -359,9 +359,9 @@ parallelize[func: fn(Int) capturing -> None](rt: Runtime, num_work_items: Int)
 parallelize[func: fn(Int) capturing -> None](rt: Runtime, num_work_items: Int, num_workers: Int)
 ```
 
-将func(0) ... func(num_work_items-1) 作为子任务并行执行，并在所有子任务完成后返回。
+将 func(0) ... func(num_work_items-1) 作为子任务并行执行，并在所有子任务完成后返回。
 
-将func(0) ... func(num_work_items-1)作为子任务并行执行。只有在所有子任务完成后，此函数才会返回。
+将 func(0) ... func(num_work_items-1) 作为子任务并行执行。只有在所有子任务完成后，此函数才会返回。
 
 **Parameters**：
 
@@ -383,7 +383,7 @@ tile[workgroup_function: fn[Int](Int) capturing -> None, tile_size_list: Variadi
 
 以指定的 tile 大小启动工作组的生成器。
 
-一个工作组函数是一个可以处理可配置的连续 “tile” 工作负载的函数。例如，work_on\[3\](5) 应该在项 5，6，7 上启动计算，并且在语义上等同于work_on\[1\](5)，work_on\[1\](6)，work_on\[1\](7)。
+一个工作组函数是一个可以处理可配置的连续 “tile” 工作负载的函数。例如，work_on\[3\](5) 应该在项 5，6，7 上启动计算，并且在语义上等同于 work_on\[1\](5)，work_on\[1\](6)，work_on\[1\](7)。
 
 这个生成器将尝试按照给定的 tile 大小列表顺序进行处理。例如，tile\[func, (3,2,1)\](offset, upperbound) 将尝试从偏移量开始调用 func\[3\]，直到剩余的工作量从上限减少到小于3，然后尝试 func\[2\]，然后尝试 func\[1\]，以此类推。 
 
@@ -475,7 +475,7 @@ unswitch[switched_func: fn[Bool]() capturing -> None](dynamic_switch: Bool)
 
 执行 unswitch 功能转换。
 
-Unswitch是一种简单的模式，类似于循环unswitching pass，但扩展到了功能模式。该模式有助于以下代码转换，从而减少生成代码中的分支数量。
+Unswitch 是一种简单的模式，类似于循环 unswitching pass，但扩展到了功能模式。该模式有助于以下代码转换，从而减少生成代码中的分支数量。
 
 Before：
 
