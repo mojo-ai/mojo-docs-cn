@@ -74,7 +74,7 @@ Mojo 是一种非常年轻的语言，因此这些是我们目前所能提供的
 
 [path &#8594;](https://mojo-docs-cn.vercel.app/mojo-library/pathlib/path.html)
 
-[polynomial &#8594();](https://mojo-docs-cn.vercel.app/mojo-library/math/polynomial.html)
+[polynomial &#8594;](https://mojo-docs-cn.vercel.app/mojo-library/math/polynomial.html)
 
 [python &#8594;](https://mojo-docs-cn.vercel.app/mojo-library/python/python.html)
 
