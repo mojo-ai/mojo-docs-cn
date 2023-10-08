@@ -20,17 +20,17 @@ map_reduce[simd_width: Int, size: Dim, type: DType, acc_type: DType, input_gen_f
 
 - **simd_width** (`Int`)：计算的向量宽度。
 
-- **size** (`Dim`)：buffer大小。
+- **size** (`Dim`)：buffer 大小。
   
-- **type** (`DType`)：buffer元素的数据类型。
+- **type** (`DType`)：buffer 元素的数据类型。
 
 - **acc_type** (`DType`)：归约累加器的数据类型。
 
 - **input_gen_fn** (`fn[DType, Int](Int) capturing -> SIMD[*(0,0), *(0,1)]`)：一个生成输入以进行归约操作的函数。
 
-- **reduce_vec_to_vec_fn** (`fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)]`)：一个映射函数，用于将两个输入数据块组合（累加）起来。 例如：将两个 8xfloat32 的向量归约为一个 8xfloat32 的向量。
+- **reduce_vec_to_vec_fn** (`fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)]`)：一个映射函数，用于将两个输入数据块组合（累加）起来。例如：将两个 8 x float32 的向量归约为一个 8 x float32 的向量。
 
-- **reduce_vec_to_scalar_fn** (`fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1]`)：一个归约函数，用于将一个向量归约为一个标量。 例如：将一个 8xfloat32 的向量归约为一个 float32 的标量。
+- **reduce_vec_to_scalar_fn** (`fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1]`)：一个归约函数，用于将一个向量归约为一个标量。 例如：将一个 8 x float32 的向量归约为一个 float32 的标量。
 
 **Args**：
 
@@ -38,6 +38,74 @@ map_reduce[simd_width: Int, size: Dim, type: DType, acc_type: DType, input_gen_f
 
 - **init** (`SIMD[acc_type, 1]`)：在累加器中使用的初始值。
 
-**Returns**:
+**Returns**：
 
 计算得到的归约值。
+
+## `reduce`
+
+```python
+reduce[simd_width: Int, size: Dim, type: DType, acc_type: DType, map_fn: fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)], reduce_fn: fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1]](src: Buffer[size, type], init: SIMD[acc_type, 1]) -> SIMD[acc_type, 1]
+```
+
+计算缓冲区元素的自定义归约。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：计算的向量宽度。
+
+- **size** (`Dim`)：buffer 大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+- **acc_type** (`DType`)：归约累加器的数据类型。
+
+- **map_fn** (`fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)]`)：一个映射函数，用于将两个输入数据块组合（累加）在一起使用。例如：将两个 8 x float32 的向量归约为一个单独的 8 x float32 的向量。
+
+- **reduce_fn** (`fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1]`)：一个归约函数，用于将一个向量归约为一个标量。 例如：将一个 8 x float32 的向量归约为一个 1 x float32 的标量。
+  
+**Args**：
+
+- **src** (`Buffer[size, type]`)：输入 buffer。
+
+- **init** (`SIMD[acc_type, 1]`)：在累加器中使用的初始值。
+
+**Returns**：
+
+计算得到的归约值。
+
+```python
+reduce[simd_width: Int, rank: Int, input_shape: DimList, output_shape: DimList, type: DType, acc_type: DType, map_fn: fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)], reduce_fn: fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1], reduce_axis: Int](src: NDBuffer[rank, input_shape, type], dst: NDBuffer[rank, output_shape, acc_type], init: SIMD[acc_type, 1])
+```
+
+执行对 NDBuffer（src）的 reduce_axis 进行归约，并将结果存储在 NDBuffer（dst）中。
+
+首先，将 src 重塑为一个 3D 张量。不失一般性，三个轴将被称为 [H, W, C]，其中要归约的轴是 W，归约之前的轴被打包到 H 中，归约之后的轴被打包到 C 中。即在轴 i 上减少的维度为 [D1, D2, …, Di, …, Dn] 的张量被打包成一个维度为 [H, W, C] 的 3D 张量，其中 H=prod(D1, …, Di-1), W=Di, C=prod(Di+1, …, Dn)。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：计算的向量宽度。
+
+- **rank** (`Int`)：输入/输出 buffers 的 rank。
+
+- **input_shape** (`DimList`)：输入 buffer 维度。
+
+- **output_shape** (`DimList`)：输出 buffer 维度。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+- **acc_type** (`DType`)：归约累加器的数据类型。
+
+- **map_fn** (`fn[DType, DType, Int](SIMD[*(0,0), *(0,2)], SIMD[*(0,1), *(0,2)]) capturing -> SIMD[*(0,0), *(0,2)]`)：一个映射函数，用于将两个输入数据块组合（累加）在一起使用。例如：将两个 8 x float32 的向量归约为一个单独的 8 x float32 的向量。
+
+- **reduce_fn** (`fn[DType, Int](SIMD[*(0,0), *(0,1)]) -> SIMD[*(0,0), 1]`)：一个归约函数，用于将一个向量归约为一个标量。 例如：将一个 8 x float32 的向量归约为一个 1 x float32 的标量。
+
+- **reduce_axis** (`Int`)：要归约的坐标轴。
+
+**Args**：
+
+- **src** (`NDBuffer[rank, input_shape, type]`)：输入 buffer。
+
+- **dst** (`NDBuffer[rank, output_shape, acc_type]`)：输出 buffer。
+
+- **init** (`SIMD[acc_type, 1]`)：在累加器中使用的初始值。
