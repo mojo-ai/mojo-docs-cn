@@ -109,3 +109,35 @@ reduce[simd_width: Int, rank: Int, input_shape: DimList, output_shape: DimList, 
 - **dst** (`NDBuffer[rank, output_shape, acc_type]`)：输出 buffer。
 
 - **init** (`SIMD[acc_type, 1]`)：在累加器中使用的初始值。
+
+## `reduce_boolean`
+
+```python
+reduce_boolean[simd_width: Int, size: Dim, type: DType, reduce_fn: fn[DType, Int](SIMD[*(0,0), *(0,1)]) capturing -> Bool, continue_fn: fn(Bool) capturing -> Bool](src: Buffer[size, type], init: Bool) -> Bool
+```
+
+计算缓冲区元素的布尔归约。
+ 
+如果 continue_fn 返回 False，则归约操作提前退出。
+
+**Parameters**：
+
+- **simd_width** (Int)：计算的向量宽度。
+
+- **size** (Dim)：buffer大小。
+  
+- **type** (DType)：buffer 元素的数据类型。
+  
+- **reduce_fn** (fn[DType, Int](SIMD[*(0,0), *(0,1)]) capturing -> Bool)：一个布尔归约函数，用于将向量归约为标量。例如：将一个 8 x float32 向量归约为布尔值。
+
+- **continue_fn** (fn(Bool) capturing -> Bool)：一个用于指示是否继续处理剩余迭代的函数，这个函数接收 reduce_fn 的结果，返回 True 则继续处理，返回 False 则提前退出。
+
+**Args**：
+
+- **src** (Buffer[size, type])：输入buffer。
+
+- **init** (Bool): 要使用的初始值。
+
+**Returns**：
+
+计算得到的归约值。
