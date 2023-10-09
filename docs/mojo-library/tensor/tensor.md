@@ -399,7 +399,7 @@ simd_load[simd_width: Int](self: Self, *indices: Int) -> SIMD[dtype, simd_width]
 
 **Args**：
 
-- **indices** (`Int`)：要检索的值指示。
+- **indices** (`*Int`)：要检索的值指示。
 
 **Returns**：
 
