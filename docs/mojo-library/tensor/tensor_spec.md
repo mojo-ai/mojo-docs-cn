@@ -148,3 +148,63 @@ rank(self: Self) -> Int
 **Returns**：
 
 规范的秩。
+
+### `dtype`
+
+```python
+dtype(self: Self) -> DType
+```
+
+获取规范的 DType。
+
+**Returns**：
+
+规范的 DType。
+
+### `num_elements`
+
+```python
+num_elements(self: Self) -> Int
+```
+
+获取规范中元素的总数。
+
+**Returns**：
+
+规范中元素的总数。
+
+### `bytecount`
+
+```python
+bytecount(self: Self) -> Int
+```
+
+获取总字节计数。
+
+**Returns**：
+
+总字节计数。
+
+### `__repr__`
+
+```python
+__repr__(self: Self) -> String
+```
+
+返回规范的字符串表示形式。
+
+**Returns**：
+
+规范的字符串表示形式。
+
+### `__str__`
+
+```python
+__str__(self: Self) -> String
+```
+
+返回规范的字符串表示形式。
+
+**Returns**：
+
+规范的字符串表示形式。
