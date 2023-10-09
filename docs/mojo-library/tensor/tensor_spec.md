@@ -16,3 +16,18 @@ from tensor import TensorSpec
 
 - **shape** (`TensorShape`)：规范的基础形状。
   
+**Functions**：
+
+### `__init__`
+
+```python
+__init__(inout self: Self)
+```
+
+TensorShape 的默认初始化。
+
+```python
+__init__(inout self: Self, type: DType, *shapes: Int)
+```
+
+从提供的 dtype 和 shapes 初始化 TensorSpec。
