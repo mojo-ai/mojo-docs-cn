@@ -122,22 +122,44 @@ reduce_boolean[simd_width: Int, size: Dim, type: DType, reduce_fn: fn[DType, Int
 
 **Parameters**：
 
-- **simd_width** (Int)：计算的向量宽度。
+- **simd_width** (`Int`)：计算的向量宽度。
 
-- **size** (Dim)：buffer大小。
+- **size** (`Dim`)：buffer大小。
   
-- **type** (DType)：buffer 元素的数据类型。
+- **type** (`DType`)：buffer 元素的数据类型。
   
-- **reduce_fn** (fn[DType, Int](SIMD[*(0,0), *(0,1)]) capturing -> Bool)：一个布尔归约函数，用于将向量归约为标量。例如：将一个 8 x float32 向量归约为布尔值。
+- **reduce_fn** (`fn[DType, Int](SIMD[*(0,0), *(0,1)]) capturing -> Bool`)：一个布尔归约函数，用于将向量归约为标量。例如：将一个 8 x float32 向量归约为布尔值。
 
-- **continue_fn** (fn(Bool) capturing -> Bool)：一个用于指示是否继续处理剩余迭代的函数，这个函数接收 reduce_fn 的结果，返回 True 则继续处理，返回 False 则提前退出。
+- **continue_fn** (`fn(Bool) capturing -> Bool`)：一个用于指示是否继续处理剩余迭代的函数，这个函数接收 reduce_fn 的结果，返回 True 则继续处理，返回 False 则提前退出。
 
 **Args**：
 
-- **src** (Buffer[size, type])：输入buffer。
+- **src** (`Buffer[size, type]`)：输入buffer。
 
-- **init** (Bool): 要使用的初始值。
+- **init** (`Bool`): 要使用的初始值。
 
 **Returns**：
 
 计算得到的归约值。
+
+## `max`
+
+```python
+max[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
+```
+
+计算缓冲区中最大的元素。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+缓冲区中最大的元素。
