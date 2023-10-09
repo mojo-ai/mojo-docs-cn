@@ -394,8 +394,64 @@ mean[rank: Int, input_shape: DimList, output_shape: DimList, type: DType, reduce
 - **type** (`DType`)：buffer 元素的数据类型。
 
 - **reduce_axis** (`Int`)：要归约的坐标轴。
+
 **Args**：
 
 - **src** (`NDBuffer[rank, input_shape, type]`)：输入 buffer。
 
 - **dst** (`NDBuffer[rank, output_shape, type]`)：输出 buffer。
+
+## `variance`
+
+```python
+variance[size: Dim, type: DType](src: Buffer[size, type], mean_value: SIMD[type, 1], correction: Int) -> SIMD[type, 1]
+```
+
+ 给定均值，计算缓冲区中元素的方差。
+
+均值用于避免对数据进行第二次遍历：
+
+`variance(src) = sum((x - E(x))^2) / (size - correction)`
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer 大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+- **mean_value** (`SIMD[type, 1]`)：缓冲区元素的平均值。
+
+- **correction** (`Int`)：修正（修正方差的因子，默认为1）。
+
+**Returns**:
+
+缓冲区中元素的方差。
+
+```python
+variance[size: Dim, type: DType](src: Buffer[size, type], correction: Int) -> SIMD[type, 1]
+```
+
+计算缓冲区中元素的方差。
+
+`variance(src) = sum((x - E(x))^2) / (size - correction)`
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer 大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+- **correction** (`Int`)：修正（修正方差的因子，默认为1）。
+
+**Returns**：
+
+缓冲区中元素的方差。
+
