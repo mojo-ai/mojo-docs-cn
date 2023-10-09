@@ -10,7 +10,7 @@ from tensor import TensorShape
 
 ## `TensorShape`
 
-张量形状的空间高效表示形式。此结构实现值语义并拥有其基础数据。
+张量形状的空间高效表示形式。此结构体实现值语义并拥有其基础数据。
 
 **Functions**
 
