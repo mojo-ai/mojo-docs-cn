@@ -101,3 +101,391 @@ __init__(inout self: Self, owned ptr: DTypePointer[dtype], owned spec: TensorSpe
 
 - **ptr** (`DTypePointer[dtype]`)：数据指针。
 - **spec** (`TensorSpec`)：张量规范。
+
+### `__copyinit__`
+
+```python
+__copyinit__(inout self: Self, other: Self)
+```
+
+创建现有张量的深层拷贝。
+
+**Args**：
+
+- **other** (`Self`)：将从中复制的张量。
+
+### `__moveinit__`
+
+```python
+__moveinit__(inout self: Self, owned existing: Self)
+```
+
+张量的移动初始值设定项。
+
+**Args**：
+
+- **existing** (`Self`)：要移动的张量。
+
+### `__del__`
+
+```python
+__del__(owned self: Self)
+```
+
+删除规范并释放任何拥有的内存。
+
+### `__getitem__`
+
+```python
+__getitem__(self: Self, index: Int) -> SIMD[dtype, 1]
+```
+
+获取指定索引处的值。
+
+**Args**：
+
+- **index** (`Int`)：要检索的值索引。
+
+**Returns**：
+
+指定索引处的值。
+
+```python
+__getitem__(self: Self, *indices: Int) -> SIMD[dtype, 1]
+```
+
+获取指定指示处的值。
+
+**Args**：
+
+- **indices** (`Int`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的值。
+
+```python
+__getitem__(self: Self, indices: VariadicList[Int]) -> SIMD[dtype, 1]
+```
+
+获取指定指示处的值。
+
+**Args**：
+
+- **indices** (`VariadicList[Int]`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的值。
+
+```python
+__getitem__[len: Int](self: Self, indices: StaticIntTuple[len]) -> SIMD[dtype, 1]
+```
+
+获取指定指示处的 SIMD 值。
+
+**Parameters**：
+
+- **len** (`Int`)：指示的长度。
+
+**Args**：
+
+- **indices** (`StaticIntTuple[len]`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的值。
+
+### `__setitem__`
+
+```python
+__setitem__(inout self: Self, index: Int, val: SIMD[dtype, 1])
+```
+
+设置指定索引处的值。
+
+**Args**：
+
+- **index** (`Int`)：要设置的值的索引。
+- **val** (`SIMD[dtype, 1]`)：要存储的值。
+
+```python
+__setitem__(inout self: Self, indices: VariadicList[Int], val: SIMD[dtype, 1])
+```
+
+设置指定指示处的值。
+
+**Args**：
+
+- **indices** (`VariadicList[Int]`)：要设置的值的指示。
+- **val** (`SIMD[dtype, 1]`)：要存储的值。
+
+```python
+__setitem__[len: Int](inout self: Self, indices: StaticIntTuple[len], val: SIMD[dtype, 1])
+```
+
+设置指定指示处的值。
+
+**Parameters**：
+
+- **len** (`Int`)：指示的长度。
+
+**Args**：
+
+- **indices** (`StaticIntTuple[len]`)：要设置的值的指示。
+- **val** (`SIMD[dtype, 1]`)：要存储的值。
+
+### `__eq__`
+
+```python
+__eq__(self: Self, other: Self) -> Bool
+```
+
+如果两个张量相同，则返回 True，否则返回 False。
+
+**Args**：
+
+- **other** (`Self`)：另一个要比较的张量。
+
+**Returns**：
+
+如果两个张量相同，则为 True，否则为 False。
+
+### `__ne__`
+
+```python
+__ne__(self: Self, other: Self) -> Bool
+```
+
+如果两个张量不相同，则返回 True，否则返回 False。
+
+**Args**：
+
+- **other** (`Self`)：另一个要比较的张量。
+
+**Returns**：
+
+如果两个张量不相同，则为 True，否则为 False。
+
+### `data`
+
+```python
+data(self: Self) -> DTypePointer[dtype]
+```
+
+获取指向张量的基础数据指针。
+
+**Returns**：
+
+张量的基础数据指针。
+
+### `type`
+
+```python
+type(self: Self) -> DType
+```
+
+获取张量的基础 DType。
+
+**Returns**：
+
+张量的基础 DType。
+
+### `rank`
+
+```python
+rank(self: Self) -> Int
+```
+
+获取张量的秩。
+
+**Returns**：
+
+张量的秩。
+
+### `num_elements`
+
+```python
+num_elements(self: Self) -> Int
+```
+
+获取张量中元素的总数。
+
+**Returns**：
+
+张量中元素的总数。
+
+### `bytecount`
+
+```python
+bytecount(self: Self) -> Int
+```
+
+获取张量的总字节数。
+
+**Returns**：
+
+张量的总字节数。
+
+### `spec`
+
+```python
+spec(self: Self) -> TensorSpec
+```
+
+获取张量的规范。
+
+**Returns**：
+
+张量的基础张量规范。
+
+### `shape`
+
+```python
+shape(self: Self) -> TensorShape
+```
+
+获取张量的形状。
+
+**Returns**：
+
+张量的基础张量形状。
+
+### `dim`
+
+```python
+dim(self: Self, idx: Int) -> Int
+```
+
+获取指定索引处的维度。
+
+**Args**：
+
+- **idx** (`Int`)：维度索引。
+
+**Returns**：
+
+指定索引处的维度。
+
+### `simd_load`
+
+```python
+simd_load[simd_width: Int](self: Self, index: Int) -> SIMD[dtype, simd_width]
+```
+
+获取指定索引处的 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+
+**Args**：
+
+- **index** (`Int`)：要检索的值索引。
+
+**Returns**：
+
+指定索引处的 SIMD 值。
+
+```python
+simd_load[simd_width: Int](self: Self, *indices: Int) -> SIMD[dtype, simd_width]
+```
+
+获取指定指示处的 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+
+**Args**：
+
+- **indices** (`Int`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的 SIMD 值。
+
+```python
+simd_load[simd_width: Int](self: Self, indices: VariadicList[Int]) -> SIMD[dtype, simd_width]
+```
+
+获取指定指示处的 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+
+**Args**：
+
+- **indices** (`VariadicList[Int]`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的 SIMD 值。
+
+```python
+simd_load[simd_width: Int, len: Int](self: Self, indices: StaticIntTuple[len]) -> SIMD[dtype, simd_width]
+```
+
+获取指定指示处的 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+- **len** (`Int`)：指示的长度。
+
+**Args**：
+
+- **indices** (`StaticIntTuple[len]`)：要检索的值指示。
+
+**Returns**：
+
+指定指示处的 SIMD 值。
+
+### `simd_store`
+
+```python
+simd_store[simd_width: Int](inout self: Self, index: Int, val: SIMD[dtype, simd_width])
+```
+
+在指定索引处设置 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+
+**Args**：
+
+- **index** (`Int`)：要设置的值索引。
+- **val** (`SIMD[dtype, simd_width]`)：要存储的 SIMD 值。
+
+```python
+simd_store[simd_width: Int](inout self: Self, indices: VariadicList[Int], val: SIMD[dtype, simd_width])
+```
+
+在指定的指示处设置 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+
+**Args**：
+
+- **indices** (`VariadicList[Int]`)：要设置的值指示。
+- **val** (`SIMD[dtype, simd_width]`)：要存储的 SIMD 值。
+
+```python
+simd_store[simd_width: Int, len: Int](inout self: Self, indices: StaticIntTuple[len], val: SIMD[dtype, simd_width])
+```
+
+在指定的指示处设置 SIMD 值。
+
+**Parameters**：
+
+- **simd_width** (`Int`)：矢量的 SIMD 宽度。
+- **len** (`Int`)：指示的长度。
+
+**Args**：
+
+- **indices** (`StaticIntTuple[len]`)：要设置的值指示。
+- **val** (`SIMD[dtype, simd_width]`)：要存储的 SIMD 值。
