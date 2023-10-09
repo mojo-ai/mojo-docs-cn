@@ -57,7 +57,7 @@ __init__(inout self: Self, type: DType, owned shape: TensorShape)
 **Args**：
 
 - **type** (`DType`)：规范的 dtype。
-- **shapes** (`TensorShape`)：用于初始化形状的 shapes。
+- **shape** (`TensorShape`)：用于初始化形状的 shapes。
 
 ### `__copyinit__`
 
