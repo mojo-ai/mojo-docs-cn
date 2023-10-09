@@ -164,6 +164,29 @@ max[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
 
 缓冲区中最大的元素。
 
+```python
+max[rank: Int, input_shape: DimList, output_shape: DimList, type: DType, reduce_axis: Int](src: NDBuffer[rank, input_shape, type], dst: NDBuffer[rank, output_shape, type])
+```
+
+计算 NDBuffer 在 reduce_axis 轴上的最大值。
+
+**Parameters**：
+
+- **rank** (`Int`)：输入/输出 buffers 的 rank。
+
+- **input_shape** (`DimList`)：输入 buffer 维度。
+
+- **output_shape** (`DimList`)：输出 buffer 维度。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+- **reduce_axis** (`Int`)：要归约的坐标轴。
+
+**Args**:
+
+- **src** (`NDBuffer[rank, input_shape, type]`)：The input buffer.
+- **dst** (`NDBuffer[rank, output_shape, type]`)：The output buffer.
+
 ## `min`
 
 ```python
@@ -190,7 +213,7 @@ min[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
 min[rank: Int, input_shape: DimList, output_shape: DimList, type: DType, reduce_axis: Int](src: NDBuffer[rank, input_shape, type], dst: NDBuffer[rank, output_shape, type])
 ```
 
-Computes the min across reduce_axis of an NDBuffer.
+计算 NDBuffer 在 reduce_axis 轴上的最小值。
 
 **Parameters**：
 
@@ -203,6 +226,82 @@ Computes the min across reduce_axis of an NDBuffer.
 - **type** (`DType`)：buffer 元素的数据类型。
 
 - **reduce_axis** (`Int`)：要归约的坐标轴。
+
+**Args**：
+
+- **src** (`NDBuffer[rank, input_shape, type]`)：输入 buffer。
+
+- **dst** (`NDBuffer[rank, output_shape, type]`)：输出 buffer。
+
+## `sum`
+
+```python
+sum[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
+```
+
+计算缓冲区元素的和。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+缓冲区元素的和。
+
+示例：
+
+```python
+from algorithm import sum
+from memory.buffer import Buffer
+
+fn main():
+    alias numElem = 10
+
+    # allocate a buffer, use stackalloc 
+    # var A = Buffer[size, DType.float32].stack_allocation()
+    # allocate a buffer, use heapalloc
+    var B = DTypePointer[DType.float32].alloc(numElem)
+    var A = Buffer[numElem, DType.float32](B)
+
+    # initialize buffer
+    for i in range(numElem):
+       A[i] = Float32(i)
+       # print(A[i])
+    
+    var mySum: Float32 = 0.0
+    mySum = sum[numElem, DType.float32](A)
+    
+    print("sum = ", mySum)
+
+main()
+```
+
+> sum =  45.0
+
+```python
+sum[rank: Int, input_shape: DimList, output_shape: DimList, type: DType, reduce_axis: Int](src: NDBuffer[rank, input_shape, type], dst: NDBuffer[rank, output_shape, type])
+```
+
+计算 NDBuffer 在 reduce_axis 轴上的和。
+
+**Parameters**：
+
+- **rank** (Int)：输入/输出 buffers 的 rank。
+
+- **input_shape** (DimList)：输入 buffer 维度。
+
+- **output_shape** (DimList)：输出 buffer 维度。
+
+- **type** (DType)：buffer 元素的数据类型。
+
+- **reduce_axis** (Int)：要归约的坐标轴。
 
 **Args**：
 
