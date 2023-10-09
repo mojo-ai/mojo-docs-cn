@@ -128,7 +128,7 @@ __ne__(self: Self, other: Self) -> Bool
 rank(self: Self) -> Int
 ```
 
-获取形状的排名。
+获取形状的秩。
 
 **Returns**：
 
