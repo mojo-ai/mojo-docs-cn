@@ -455,3 +455,48 @@ variance[size: Dim, type: DType](src: Buffer[size, type], correction: Int) -> SI
 
 缓冲区中元素的方差。
 
+## `all_true`
+
+```python
+all_true[size: Dim, type: DType](src: Buffer[size, type]) -> Bool
+```
+
+如果缓冲区中的所有元素都为True，则返回True，否则返回False。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer 大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+如果缓冲区中的所有元素都为True，则返回True，否则返回False。
+
+## `any_true`
+
+```python
+any_true[size: Dim, type: DType](src: Buffer[size, type]) -> Bool
+```
+
+如果缓冲区中的任何元素为True，则返回True，否则返回False。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer 大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+如果缓冲区中的任何元素为True，则返回True，否则返回False。
+
+
