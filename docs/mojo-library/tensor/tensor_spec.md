@@ -31,3 +31,120 @@ __init__(inout self: Self, type: DType, *shapes: Int)
 ```
 
 从提供的 dtype 和 shapes 初始化 TensorSpec。
+
+**Args**：
+
+- **type** (`DType`)：规范的 dtype。
+- **shapes** (`*Int`)：用于初始化形状的 shapes。
+
+```python
+__init__(inout self: Self, type: DType, shapes: VariadicList[Int])
+```
+
+从提供的 dtype 和 shapes 初始化 TensorSpec。
+
+**Args**：
+
+- **type** (`DType`)：规范的 dtype。
+- **shapes** (`VariadicList[Int]`)：用于初始化形状的 shapes。
+
+```python
+__init__(inout self: Self, type: DType, owned shape: TensorShape)
+```
+
+从提供的 dtype 和 shape 初始化 TensorSpec。
+
+**Args**：
+
+- **type** (`DType`)：规范的 dtype。
+- **shapes** (`TensorShape`)：用于初始化形状的 shapes。
+
+### `__copyinit__`
+
+```python
+__copyinit__(inout self: Self, other: Self)
+```
+
+创建现有规范的深层拷贝。
+
+**Args**：
+
+- **other** (`Self`)：要复制的规范。
+
+### `__moveinit__`
+
+```python
+__moveinit__(inout self: Self, owned existing: Self)
+```
+
+规范的移动初始化。
+
+**Args**：
+
+- **existing** (`Self`)：要移动的规范。
+
+### `__del__`
+
+```python
+__del__(owned self: Self)
+```
+
+### `__getitem__`
+
+```python
+__getitem__(self: Self, index: Int) -> Int
+```
+
+获取指定索引处的维度。
+
+**Args**：
+
+- **index** (`Int`)：维度索引。
+
+**Returns**：
+
+指定索引处的维度。
+
+### `__eq__`
+
+```python
+__eq__(self: Self, other: Self) -> Bool
+```
+
+如果两个值相同，则返回 True，否则返回 False。
+
+**Args**：
+
+- **other** (`Self`)：另一个要比较的 TensorSpec。
+
+**Returns**：
+
+如果两个规格相同，则为 True，否则为 False。
+
+### `__ne__`
+
+```python
+__ne__(self: Self, other: Self) -> Bool
+```
+
+如果两个值不相同，则返回 True，否则返回 False。
+
+**Args**：
+
+- **other** (`Self`)：另一个要比较的 TensorSpec。
+
+**Returns**：
+
+如果两个规格不相同，则为 True，否则为 False。
+
+### `rank`
+
+```python
+rank(self: Self) -> Int
+```
+
+获取规范的秩。
+
+**Returns**：
+
+规范的秩。
