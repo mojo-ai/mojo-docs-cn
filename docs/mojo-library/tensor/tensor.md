@@ -158,7 +158,7 @@ __getitem__(self: Self, *indices: Int) -> SIMD[dtype, 1]
 
 **Args**：
 
-- **indices** (`Int`)：要检索的值指示。
+- **indices** (`*Int`)：要检索的值指示。
 
 **Returns**：
 
