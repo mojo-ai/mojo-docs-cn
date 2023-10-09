@@ -163,3 +163,49 @@ max[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
 **Returns**：
 
 缓冲区中最大的元素。
+
+## `min`
+
+```python
+min[size: Dim, type: DType](src: Buffer[size, type]) -> SIMD[type, 1]
+```
+
+计算缓冲区中最小的元素。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer大小。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+缓冲区中最小的元素。
+
+```python
+min[rank: Int, input_shape: DimList, output_shape: DimList, type: DType, reduce_axis: Int](src: NDBuffer[rank, input_shape, type], dst: NDBuffer[rank, output_shape, type])
+```
+
+Computes the min across reduce_axis of an NDBuffer.
+
+**Parameters**：
+
+- **rank** (`Int`)：输入/输出 buffers 的 rank。
+
+- **input_shape** (`DimList`)：输入 buffer 维度。
+
+- **output_shape** (`DimList`)：输出 buffer 维度。
+
+- **type** (`DType`)：buffer 元素的数据类型。
+
+- **reduce_axis** (`Int`)：要归约的坐标轴。
+
+**Args**：
+
+- **src** (`NDBuffer[rank, input_shape, type]`)：输入 buffer。
+
+- **dst** (`NDBuffer[rank, output_shape, type]`)：输出 buffer。
