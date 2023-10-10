@@ -2,7 +2,7 @@
 
 实现 ListLiteral 类。
 
-这些是Mojo内置的，无需导入。
+这些是 Mojo 内置的，无需导入。
 
 ## `ListLiteral`[](#listliteral)
 
