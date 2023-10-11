@@ -401,4 +401,62 @@ __len__(self: Self) -> Int
 
 ## `VariadicListMem`
 
+用于访问可能具有所有权，仅内存类型的可变参函数的参数。它以可枚举的方式暴露指向元素的指针。每个元素都可以通过 `__get_address_as_lvalue` 访问。
 
+**Parameters**：
+
+- **type** (`AnyType`)：列表中元素的类型。
+
+**Aliases**：
+
+- `StorageType = variadic<pointer<*"type">>`
+
+**Fields**：
+
+- **value** (`variadic<pointer<*"type">>`)：基础存储，指向给定类型元素的可变指针列表。
+
+**Functions**：
+
+### `__init__`
+
+```python
+__init__(*value: pointer<*"type">) -> Self
+```
+
+从可变参数类型构造 `VariadicList `。
+
+**Args**：
+
+- **value** (`*pointer<*"type">`)：用于构造列表的可变参数。
+
+**Returns**：
+
+构造的 `VariadicList `。
+
+### `__getitem__`
+
+```python
+__getitem__(self: Self, index: Int) -> pointer<*"type">
+```
+
+获取可变列表中的单个元素。
+
+**Args**：
+
+- **index** (`Int`)：要在列表中访问的元素的索引。
+
+**Returns**：
+
+指向列表中给定索引对应的元素的低级指针。
+
+### `__len__`
+
+```python
+__len__(self: Self) -> Int
+```
+
+获取列表的大小。
+
+**Returns**：
+
+可变列表中的元素数。
