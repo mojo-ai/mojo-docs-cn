@@ -12,7 +12,7 @@ from utils.index import StaticIntTuple
 
 * `mlir_bool = scalar<bool>`
 
-`StaticIntTuple`
+## `StaticIntTuple`
 
 实现与大小无关索引函数的基础结构体。
 
@@ -26,7 +26,7 @@ from utils.index import StaticIntTuple
 
 **Functions**：
 
-`__init__`
+### `__init__`
 
 ```python
 __init__() -> Self
@@ -112,7 +112,7 @@ __init__(values: DimList) -> Self
 __init__(data: StaticTuple[size, Int]) -> Self
 ```
 
-`__getitem__`
+### `__getitem__`
 
 ```python
 __getitem__(self: Self, index: Int) -> Int
@@ -128,7 +128,7 @@ __getitem__(self: Self, index: Int) -> Int
 
 元组元素值。
 
-`__setitem__`
+### `__setitem__`
 
 ```python
 __setitem__[index: Int](inout self: Self, val: Int)
@@ -155,7 +155,7 @@ __setitem__(inout self: Self, index: Int, val: Int)
 - **index** (`Int`)：元素索引。
 - **val** (`Int`)：要存储的值。
 
-`__lt__`
+### `__lt__`
 
 ```python
 __lt__(self: Self, rhs: Self) -> Bool
@@ -175,7 +175,7 @@ __lt__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__le__`
+### `__le__`
 
 ```python
 __le__(self: Self, rhs: Self) -> Bool
@@ -195,7 +195,7 @@ __le__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__eq__`
+### `__eq__`
 
 ```python
 __eq__(self: Self, rhs: Self) -> Bool
@@ -213,7 +213,7 @@ __eq__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__ne__`
+### `__ne__`
 
 ```python
 __ne__(self: Self, rhs: Self) -> Bool
@@ -231,7 +231,7 @@ __ne__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__gt__`
+### `__gt__`
 
 ```python
 __gt__(self: Self, rhs: Self) -> Bool
@@ -251,7 +251,7 @@ __gt__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__ge__`
+### `__ge__`
 
 ```python
 __ge__(self: Self, rhs: Self) -> Bool
@@ -269,7 +269,7 @@ __ge__(self: Self, rhs: Self) -> Bool
 
 比较结果。
 
-`__add__`
+### `__add__`
 
 ```python
 __add__(self: Self, rhs: Self) -> Self
@@ -285,7 +285,7 @@ __add__(self: Self, rhs: Self) -> Self
 
 生成的索引元组。
 
-`__sub__`
+### `__sub__`
 
 ```python
 __sub__(self: Self, rhs: Self) -> Self
@@ -301,7 +301,7 @@ __sub__(self: Self, rhs: Self) -> Self
 
 生成的索引元组。
 
-`__mul__`
+### `__mul__`
 
 ```python
 __mul__(self: Self, rhs: Self) -> Self
@@ -317,7 +317,7 @@ __mul__(self: Self, rhs: Self) -> Self
 
 生成的索引元组。
 
-`__floordiv__`
+### `__floordiv__`
 
 ```python
 __floordiv__(self: Self, rhs: Self) -> Self
@@ -333,7 +333,7 @@ __floordiv__(self: Self, rhs: Self) -> Self
 
 生成的索引元组。
 
-`__len__`
+### `__len__`
 
 ```python
 __len__(self: Self) -> Int
@@ -345,7 +345,7 @@ __len__(self: Self) -> Int
 
 元组大小。
 
-`as_tuple`
+### `as_tuple`
 
 ```python
 as_tuple(self: Self) -> StaticTuple[size, Int]
@@ -357,7 +357,7 @@ as_tuple(self: Self) -> StaticTuple[size, Int]
 
 对应的 StaticTuple 对象。
 
-`flattened_length`
+### `flattened_length`
 
 ```python
 flattened_length(self: Self) -> Int
@@ -369,7 +369,7 @@ flattened_length(self: Self) -> Int
 
 元组的平展长度。
 
-`remu`
+### `remu`
 
 ```python
 remu(self: Self, rhs: Self) -> Self
@@ -385,7 +385,7 @@ remu(self: Self, rhs: Self) -> Self
 
 生成的索引元组。
 
-`Index`
+## `Index`
 
 ```python
 Index(x: Int) -> StaticIntTuple[1]
@@ -467,7 +467,7 @@ Index(x: Int, y: Int, z: Int, w: Int, v: Int) -> StaticIntTuple[5]
 
 构造的 StaticIntTuple。
 
-`product`
+## `product`
 
 ```python
 product[size: Int](tuple: StaticIntTuple[size], end_idx: Int) -> Int
