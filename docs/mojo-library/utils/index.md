@@ -2,7 +2,7 @@
 
 实现 `StaticIntTuple`，其用于表示 N-D 指示。
 
-您可以从 `utils` 包导入这些 API。例如
+您可以从 `utils` 包导入这些 API。例如：
 
 ```python
 from utils.index import StaticIntTuple
