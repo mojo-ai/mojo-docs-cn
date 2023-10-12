@@ -43,7 +43,7 @@ TODO：一旦我们有了特征（traits），它应调用它的元素析构函�
 __init__(inout self: Self, capacity: Int)
 ```
 
-构造具有给定容量的 `InlinedFixedVector `。
+构造具有给定容量的 `InlinedFixedVector`。
 
 `capacity - size` 用于动态分配。
 
@@ -61,7 +61,7 @@ __copyinit__(inout self: Self, existing: Self)
 
 **Args**：
 
-- **existing** (`Self`)：要复制的 `InlinedFixedVector `。
+- **existing** (`Self`)：要复制的 `InlinedFixedVector`。
 
 ### `__getitem__`
 
@@ -138,7 +138,7 @@ clear(inout self: Self)
 
 ## `UnsafeFixedVector`
 
-`UnsafeFixedVector ` 是动态分配的矢量，它不调整大小或进行边界检查。
+`UnsafeFixedVector` 是动态分配的矢量，它不调整大小或进行边界检查。
 
 它使用动态（在编译时未知）插槽（slots）数进行初始化，当被释放时，它会释放其内存。
 
