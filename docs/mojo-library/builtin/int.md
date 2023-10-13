@@ -338,7 +338,7 @@ __truediv__(self: Self, rhs: Self) -> SIMD[f64, 1]
 __floordiv__(self: Self, rhs: Self) -> Self
 ```
 
-返回 self 和 rhs 的除法，四舍五入到最接近的整数。
+返回 `self` 和 `rhs` 的除法，四舍五入到最接近的整数。
 
 **Args**：
 
