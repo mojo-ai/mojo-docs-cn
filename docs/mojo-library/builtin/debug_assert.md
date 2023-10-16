@@ -2,7 +2,7 @@
 
 实现调试断言。
 
-这些是Mojo内置的，因此您无需导入它们。
+这些是 Mojo 内置的，因此您无需导入它们。
 
 ## `debug_assert`[](#debug_assert)
 
