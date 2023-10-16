@@ -78,7 +78,7 @@
 
 **域：**
 
-* **value ** （`dtype`）：DType 值的基础存储。
+**value** （`dtype`）：DType 值的基础存储。
 
 **函数：**
 
