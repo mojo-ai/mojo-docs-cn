@@ -3,7 +3,7 @@
 
 实现基于文件的方法。
 
-这些是Mojo内置的，因此您无需导入它们。
+这些是 Mojo 内置的，因此您无需导入它们。
 
 例如，读取文件的方法如下：
 
@@ -22,7 +22,7 @@ with open("my_file.txt", "r") as f:
 
 ## `FileHandle`[](#filehandle)
 
-打开的文件的FileHandle。
+打开的文件的 FileHandle。
 
 **域：**
 
@@ -38,7 +38,7 @@ with open("my_file.txt", "r") as f:
 
 `__init__(inout self: Self, path: StringLiteral, mode: StringLiteral)`
 
-使用文件路径和模式构造FileHandle。
+使用文件路径和模式构造 FileHandle。
 
 **参数：**
 
@@ -47,7 +47,7 @@ with open("my_file.txt", "r") as f:
 
 `__init__(inout self: Self, path: String, mode: String)`
 
-使用文件路径和模式构造FileHandle。
+使用文件路径和模式构造 FileHandle。
 
 **参数：**
 
@@ -56,7 +56,7 @@ with open("my_file.txt", "r") as f:
 
 `__init__(inout self: Self, path: StringRef, mode: StringRef)`
 
-使用文件路径和字符串构造FileHandle。
+使用文件路径和字符串构造 FileHandle。
 
 **参数：**
 
@@ -67,33 +67,33 @@ with open("my_file.txt", "r") as f:
 
 `__moveinit__(inout self: Self, owned existing: Self)`
 
-移动FileHandle的构造函数。
+移动 FileHandle 的构造函数。
 
 **参数：**
 
-* **existing** （`Self`）：现有FileHandle。
+* **existing** （`Self`）：现有 FileHandle。
 
 ### `__takeinit__`[](#takeinit__)
 
 `__takeinit__(inout self: Self, inout existing: Self)`
 
-移动FileHandle的构造函数。
+移动 FileHandle 的构造函数。
 
 **参数：**
 
-* **existing** （`Self`）：现有FileHandle。
+* **existing** （`Self`）：现有 FileHandle。
 
 ### `__del__`[](#del__)
 
 `__del__(owned self: Self)`
 
-关闭FileHandle。
+关闭 FileHandle。
 
 ### `close`[](#close)
 
 `close(inout self: Self)`
 
-关闭FileHandle。
+关闭 FileHandle。
 
 ### `read`[](#read)
 
@@ -141,7 +141,7 @@ with open("my_file.txt", "r") as f:
 
 `open(path: StringLiteral, mode: StringLiteral) -> FileHandle`
 
-使用提供的模式打开路径指定的文件，返回FileHandle。
+使用提供的模式打开路径指定的文件，返回 FileHandle。
 
 **参数：**
 
@@ -154,7 +154,7 @@ FileHandle。
 
 `open(path: StringRef, mode: StringRef) -> FileHandle`
 
-使用提供的模式打开路径指定的文件，返回FileHandle。
+使用提供的模式打开路径指定的文件，返回 FileHandle。
 
 **参数：**
 
@@ -167,7 +167,7 @@ FileHandle。
 
 `open(path: String, mode: String) -> FileHandle`
 
-使用提供的模式打开路径指定的文件，返回FileHandle。
+使用提供的模式打开路径指定的文件，返回 FileHandle。
 
 **参数：**
 
@@ -180,7 +180,7 @@ FileHandle。
 
 `open(path: Path, mode: String) -> FileHandle`
 
-使用提供的模式打开路径指定的文件，返回FileHandle。
+使用提供的模式打开路径指定的文件，返回 FileHandle。
 
 **参数：**
 
