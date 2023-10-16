@@ -10,7 +10,7 @@
 
 断言条件为真。
 
-`debug_assert`与C++中`assert`的类似。它在发布版本中是无操作的。
+`debug_assert`与 C++ 中`assert`的类似。它在发布版本中是无操作的。
 
 **参数：**
 
