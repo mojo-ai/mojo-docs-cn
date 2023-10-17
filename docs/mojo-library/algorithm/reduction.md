@@ -499,4 +499,176 @@ any_true[size: Dim, type: DType](src: Buffer[size, type]) -> Bool
 
 如果缓冲区中的任何元素为True，则返回True，否则返回False。
 
+## `none_true`
 
+```python
+none_true[size: Dim, type: DType](src: Buffer[size, type]) -> Bool
+```
+
+如果缓冲区中的所有元素都不为True，则返回True，否则返回False。
+
+**Parameters**：
+
+- **size** (`Dim`)：buffer 大小。
+  
+- **type** (`DType`)：buffer 元素的数据类型。
+  
+**Args**：
+
+- **src** (`Buffer[size, type]`)：缓冲区。
+
+**Returns**：
+
+如果缓冲区中的所有元素都不为True，则返回True，否则返回False。
+
+## `argmax`
+
+```python
+argmax[type: DType, out_type: DType, rank: Int](input: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type], axis: Int, output: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type], out_chain: OutputChainPtr)
+```
+
+在指定的轴上找到最大元素的索引。
+
+**Parameters**：
+
+- **type** (`DType`)：输入张量的类型。
+
+- **out_type** (`DType`)：输出张量的类型。
+
+- **rank** (`Int`)：输入/输出张量的秩。
+
+**Args**：
+
+- **input** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type]`)：输入张量。
+
+- **axis** (`Int`)：轴。
+  
+- **output** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type]`)：输出张量
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到的链。
+
+```python
+argmax[type: DType, out_type: DType, axis_type: DType, rank: Int](input: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type], axis_buf: NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type], output: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type], out_chain: OutputChainPtr)
+```
+
+在指定的轴上找到最大元素的索引。
+
+**Parameters**：
+
+- **type** (`DType`)：输入张量的类型。
+
+- **out_type** (`DType`)：输出张量的类型。
+
+- **axis_type** (`DType`)：轴张量的类型。
+
+- **rank** (`Int`)：输入/输出张量的秩。
+
+**Args**：
+
+- **input** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type]`)：输入张量。
+
+- **axis_buf** (`NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type]`): 轴张量。
+
+- **output** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type]`)：输出张量
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到的链。
+
+## `argmin`
+
+```python
+argmin[type: DType, out_type: DType, rank: Int](input: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type], axis: Int, output: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type], out_chain: OutputChainPtr)
+```
+
+在指定的坐标轴上找到最小元素的索引。
+
+**Parameters**：
+
+- **type** (`DType`)：输入张量的类型。
+
+- **out_type** (`DType`)：输出张量的类型。
+  
+- **rank** (`Int`)：输入/输出张量的秩。
+
+**Args**：
+
+- **input** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type]`)：输入张量。
+
+- **axis** (`Int`)：轴。
+  
+- **output** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type]`)：输出张量
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到的链。
+
+```python
+argmin[type: DType, out_type: DType, axis_type: DType, rank: Int](input: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type], axis_buf: NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type], output: NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type], out_chain: OutputChainPtr)
+```
+
+在指定的坐标轴上找到最小元素的索引。
+
+**Parameters**：
+
+- **type** (`DType`)：输入张量的类型。
+
+- **out_type** (`DType`)：输出张量的类型。
+
+- **axis_type** (`DType`)：轴张量的类型。
+
+- **rank** (`Int`)：输入/输出张量的秩。
+
+**Args**：
+
+- **input** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), type]`)：输入张量。
+
+- **axis_buf** (`NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type]`): 轴张量。
+
+- **output** (`NDBuffer[rank, create_unknown[$builtin::$int::Int][rank](), out_type]`)：输出张量
+
+- **out_chain** (`OutputChainPtr`)：将结果附加到的链。
+
+## `reduce_shape`
+
+```python
+reduce_shape[input_rank: Int, input_type: DType, axis_type: DType, single_thread_blocking_override: Bool](input_buf: NDBuffer[input_rank, create_unknown[$builtin::$int::Int][input_rank](), input_type], axis_buf: NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type]) -> StaticIntTuple[input_rank]
+```
+
+计算填充操作的输出形状，并确保输入是兼容的。
+
+**Parameters**：
+
+- **input_rank** (`Int`)：输入张量的输入秩。
+
+- **input_type** (`DType`)：输入张量的类型。
+  
+- **axis_type** (`DType`)：轴张量的类型。
+  
+- **single_thread_blocking_override** (`Bool`)：此函数是否可以阻塞。
+
+**Args**：
+
+- **input_buf** (`NDBuffer[input_rank, create_unknown[$builtin::$int::Int][input_rank](), input_type]`)：输入张量。
+
+- **axis_buf** (`NDBuffer[1, create_unknown[$builtin::$int::Int][1](), axis_type]`)：轴张量。
+
+**Returns**：
+
+输出形状。
+
+## `cumsum`
+
+```python
+cumsum[size: Int, type: DType](dst: Buffer[__init__(size), type], src: Buffer[__init__(size), type])
+```
+
+计算缓冲区中所有元素的累积和。dst[i] = src[i] + src[i-1] + … + src[0]。
+
+**Parameters**：
+
+- **size** (`Int`)：输入和输出缓冲区的大小。
+
+- **type** (`DType`)：输入和输出缓冲区的元素类型。
+
+**Args**：
+
+- **dst** (`Buffer[__init__(size), type]`)：存储累积和操作结果的缓冲区。
+
+- **src** (`Buffer[__init__(size), type]`)：计算累积和的元素的缓冲区。
