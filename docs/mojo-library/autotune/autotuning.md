@@ -2,7 +2,7 @@
 
 实现自动调优功能。
 
-你可以从 `algorithm` 包中导入这些 API。例如：
+你可以从 `autotune` 包中导入这些 API。例如：
 
 ```python
 from autotune import search
