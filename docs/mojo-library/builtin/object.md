@@ -576,4 +576,134 @@ __rand__(self: Self, lhs: Self) -> Self
 __ror__(self: Self, lhs: Self) -> Self
 ```
 
-TBD
+反向或运算符。
+
+**Args**：
+
+- **lhs** (`Self`)：左侧值。
+
+**Returns**：
+
+左侧值与 this 进行按位或。
+
+### `__iadd__`
+
+```python
+__iadd__(inout self: Self, rhs: Self)
+```
+
+自身（in-place）求和或连接运算符。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+### `__isub__`
+
+```python
+__isub__(inout self: Self, rhs: Self)
+```
+
+自身（in-place）减法运算符。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+### `__imul__`
+
+```python
+__imul__(inout self: Self, rhs: Self)
+```
+
+自身（in-place）乘法运算符。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+### `__iand__`
+
+```python
+__iand__(inout self: Self, rhs: Self)
+```
+
+自身（in-place）与运算符。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+### `__ior__`
+
+```python
+__ior__(inout self: Self, rhs: Self)
+```
+
+自身（in-place）或运算符。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+### `append`
+
+```python
+append(self: Self, value: Self)
+```
+
+将值追加到列表中。
+
+**Args**：
+
+- **value** (`Self`)：要追加的值。
+
+### `__len__`
+
+```python
+__len__(self: Self) -> Int
+```
+
+返回对象的“长度”（只有字符串、列表和字典有长度）。
+
+**Returns**：
+
+字符串值的长度或列表或字典值中的元素数。
+
+### `__getattr__`
+
+```python
+__getattr__(self: Self, key: StringLiteral) -> Self
+```
+
+### `__setattr__`
+
+```python
+__setattr__(inout self: Self, key: StringLiteral, value: Self)
+```
+
+### `__call__`
+
+```python
+__call__(self: Self) -> Self
+```
+
+```python
+__call__(self: Self, arg0: Self) -> Self
+```
+
+```python
+__call__(self: Self, arg0: Self, arg1: Self) -> Self
+```
+
+```python
+__call__(self: Self, arg0: Self, arg1: Self, arg2: Self) -> Self
+```
+
+### `print`
+
+```python
+print(self: Self)
+```
+
+打印对象的值。
