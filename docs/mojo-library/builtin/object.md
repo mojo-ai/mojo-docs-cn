@@ -289,7 +289,7 @@ __setitem__(self: Self, i: Self, value: Self)
 
 **Args**：
 
-- **i** (`*Self`)：字符串或列表索引或字典键。
+- **i** (`Self`)：字符串或列表索引或字典键。
 - **value** (`Self`)：要设置的值。
 
 ```python
@@ -302,9 +302,9 @@ FIXME：我们需要此函数，原因为 `obj[i, j] = value` 将尝试使用 3 
 
 **Args**：
 
-- **i** (`*Self`)：第一个索引。
-- **j** (`*Self`)：第二个索引。
-- **value** (`*Self`)：要设置的值。
+- **i** (`Self`)：第一个索引。
+- **j** (`Self`)：第二个索引。
+- **value** (`Self`)：要设置的值。
 
 ### `__neg__`
 
