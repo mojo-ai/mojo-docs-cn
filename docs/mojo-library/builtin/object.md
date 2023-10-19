@@ -296,4 +296,284 @@ __setitem__(self: Self, i: Self, value: Self)
 __setitem__(self: Self, i: Self, j: Self, value: Self)
 ```
 
-TODO
+设置对象中的 (i, j) 元素。
+
+FIXME：我们需要此函数，原因为 `obj[i, j] = value` 将尝试使用 3 个参数调用此方法，并且我们只能将可变参数作为最后一个参数。
+
+**Args**：
+
+- **i** (`*Self`)：第一个索引。
+- **j** (`*Self`)：第二个索引。
+- **value** (`*Self`)：要设置的值。
+
+### `__neg__`
+
+```python
+__neg__(self: Self) -> Self
+```
+
+否定运算符。仅对布尔型、整型和浮点型有效。对任何布尔值的否定都会将其转换为整数。
+
+**Returns**：
+
+当前值的负数。
+
+### `__invert__`
+
+```python
+__invert__(self: Self) -> Self
+```
+
+反转值运算符。仅对布尔值和整型值有效。
+
+**Returns**：
+
+反转的值。
+
+### `__lt__`
+
+```python
+__lt__(self: Self, rhs: Self) -> Self
+```
+
+小于比较器。按字典顺序比较字符串和列表。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果对象小于右侧参数，则为 True。
+
+### `__le__`
+
+```python
+__le__(self: Self, rhs: Self) -> Self
+```
+
+小于或等于比较器。按字典顺序比较字符串和列表。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果对象小于或等于右侧参数，则为 True。
+
+### `__eq__`
+
+```python
+__eq__(self: Self, rhs: Self) -> Self
+```
+
+相等比较器。比较字符串和列表的元素。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果对象相等，则为 True。
+
+### `__ne__`
+
+```python
+__ne__(self: Self, rhs: Self) -> Self
+```
+
+不等比较器。比较字符串和列表的元素。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果对象不相等，则为 True。
+
+### `__gt__`
+
+```python
+__gt__(self: Self, rhs: Self) -> Self
+```
+
+大于比较器。按字典顺序比较字符串和列表的元素。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果左侧值大于右侧值，则为 True。
+
+### `__ge__`
+
+```python
+__ge__(self: Self, rhs: Self) -> Self
+```
+
+大于或等于比较器。这按字典顺序比较字符串和列表的元素。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果左侧值大于或等于右侧值，则为 True。
+
+### `__add__`
+
+```python
+__add__(self: Self, rhs: Self) -> Self
+```
+
+加法及连接运算符。对于算术类型，此函数将对左右侧值进行求和。对于字符串和列表，此函数将连接对象。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+求和后的值或连接后的值。
+
+### `__sub__`
+
+```python
+__sub__(self: Self, rhs: Self) -> Self
+```
+
+减法运算符。仅对算术类型有效。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+求差后的值。
+
+### `__mul__`
+
+```python
+__mul__(self: Self, rhs: Self) -> Self
+```
+
+乘法运算符。仅对算术类型有效。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+求乘积后的值。
+
+### `__and__`
+
+```python
+__and__(self: Self, rhs: Self) -> Self
+```
+
+布尔与运算符。如果左侧值为 False，则返回左侧值。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果为 False，则为当前值。
+
+### `__or__`
+
+```python
+__or__(self: Self, rhs: Self) -> Self
+```
+
+布尔或运算符。如果左侧值为 True，则返回左侧值。
+
+**Args**：
+
+- **rhs** (`Self`)：右侧值。
+
+**Returns**：
+
+如果为 True，则为当前值。
+
+### `__radd__`
+
+```python
+__radd__(self: Self, lhs: Self) -> Self
+```
+
+反向加法或连接运算符。
+
+**Args**：
+
+- **lhs** (`Self`)：左侧值。
+
+**Returns**：
+
+求和后的值或连接后的值。
+
+### `__rsub__`
+
+```python
+__rsub__(self: Self, lhs: Self) -> Self
+```
+
+反向减法运算符。
+
+**Args**：
+
+- **lhs** (`Self`)：左侧值。
+
+**Returns**：
+
+从左侧值中减去此值的结果。
+
+### `__rmul__`
+
+```python
+__rmul__(self: Self, lhs: Self) -> Self
+```
+
+反向乘法运算符。
+
+**Args**：
+
+- **lhs** (`Self`)：左侧值。
+
+**Returns**：
+
+求乘积后的值
+
+### `__rand__`
+
+```python
+__rand__(self: Self, lhs: Self) -> Self
+```
+
+反转与运算符。
+
+**Args**：
+
+- **lhs** (`Self`)：左侧值。
+
+**Returns**：
+
+左侧值与 this 进行按位与。
+
+### `__ror__`
+
+```python
+__ror__(self: Self, lhs: Self) -> Self
+```
+
+TBD
