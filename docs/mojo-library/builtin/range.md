@@ -42,7 +42,7 @@ range(length: object) -> _ZeroStartingRange
 
 **Args**：
 
-- **length** (`Object`)：区间的末端（长度）。
+- **length** (`object`)：区间的末端（长度）。
 
 **Returns**：
 
