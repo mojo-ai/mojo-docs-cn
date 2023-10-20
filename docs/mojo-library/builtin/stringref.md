@@ -46,7 +46,7 @@ __init__(ptr: Pointer[SIMD[si8, 1]], len: Int) -> Self
 
 **Returns**：
 
-构造的 `StringRef ` 对象。
+构造的 `StringRef` 对象。
 
 ```python
 __init__(ptr: DTypePointer[si8], len: Int) -> Self
@@ -63,7 +63,7 @@ __init__(ptr: DTypePointer[si8], len: Int) -> Self
 
 **Returns**：
 
-构造的 `StringRef ` 对象。
+构造的 `StringRef` 对象。
 
 ```python
 __init__(ptr: Pointer[SIMD[si8, 1]]) -> Self
@@ -79,7 +79,7 @@ __init__(ptr: Pointer[SIMD[si8, 1]]) -> Self
 
 **Returns**：
 
-构造的 `StringRef ` 对象。
+构造的 `StringRef` 对象。
 
 ```python
 __init__(ptr: DTypePointer[si8]) -> Self
@@ -95,7 +95,7 @@ __init__(ptr: DTypePointer[si8]) -> Self
 
 **Returns**：
 
-构造的 `StringRef ` 对象。
+构造的 `StringRef` 对象。
 
 ### `__getitem__`
 
