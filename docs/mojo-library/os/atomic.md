@@ -22,7 +22,7 @@ from os.atomic import Atomic
 
 - `type = _21x15__type`
 
--  scalar_type = scalar<#lit.struct.extract<:!kgen.declref<@"$builtin"::@"$dtype"::@DType> _type, "value">> 
+-  `scalar_type = scalar<#lit.struct.extract<:!kgen.declref<@"$builtin"::@"$dtype"::@DType> _type, "value">>`
 
 **字段（Fields）：**
 
@@ -38,7 +38,7 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-   - value (`SIMD[_type, 1]`): 初始值，表示为 SIMD[type, 1] 类型。
+   - **value** (`SIMD[_type, 1]`): 初始值，表示为 SIMD[type, 1] 类型。
 
 
 
@@ -48,7 +48,7 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-   - value (Int): 初始值，表示为 mlir.index 类型。
+   - **value** (`Int`): 初始值，表示为 mlir.index 类型。
 
      
 
@@ -57,7 +57,8 @@ from os.atomic import Atomic
 ​    构造一个新的原子值。
 
 ​    **参数（Args）：**
-        - **value** (`scalar<#lit.struct.extract<:!kgen.declref<*"$builtin"::*"$dtype"::_DType> _type, "value">>`): 初始值，表示为 pop.scalar 类型。
+
+- **value** (`scalar<#lit.struct.extract<:!kgen.declref<*"$builtin"::*"$dtype"::_DType> _type, "value">>`): 初始值，表示为 pop.scalar 类型。
 
 
 
@@ -71,7 +72,7 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-        - **rhs** (`SIMD[_type, 1]`): 要添加的值。
+- **rhs** (`SIMD[_type, 1]`): 要添加的值。
 
 
 
@@ -85,7 +86,7 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-        - **rhs** (`SIMD[_type, 1]`): 要减去的值。 
+- **rhs** (`SIMD[_type, 1]`): 要减去的值。 
 
 
 
@@ -97,13 +98,15 @@ from os.atomic import Atomic
 
 ​    原子地用值和参数的算术加法结果替换当前值。即，它执行原子的后增操作。该操作是一个读-修改-写操作。内存受顺序的影响，顺序是顺序一致的。
 
-​    参数（Args）：
+​    **参数（Args）：**
 
-        - **rhs** (`SIMD[_type, 1]`): 要添加的值。 
+- **rhs** (`SIMD[_type, 1]`): 要添加的值。 
 
 ​    **返回（Returns）：**
 
 ​    加法前的原始值。
+
+
 
 ### `fetch_sub`
 
@@ -115,11 +118,13 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-        - rhs (`SIMD[_type, 1]`): 要减去的值。
+- **rhs** (`SIMD[_type, 1]`): 要减去的值。
 
 ​    **返回（Returns）**：
 
 ​    减法前的原始值。
+
+
 
 ### `max`
 
@@ -135,7 +140,7 @@ from os.atomic import Atomic
 
 ​    **参数（Args）：**
 
-        - rhs (`SIMD[_type, 1]`): 最大值。
+- **rhs** (`SIMD[_type, 1]`): 最大值。
 
 
 
@@ -151,7 +156,7 @@ from os.atomic import Atomic
 
 ​    输入类型必须是整数或浮点数类型。
 
-​    参数：
+​    **参数（Args）：**
 
-​        - rhs (`SIMD[_type, 1]`): 最小值。
+- **rhs** (`SIMD[_type, 1]`): 最小值。
 
