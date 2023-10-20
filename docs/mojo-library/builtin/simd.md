@@ -1104,7 +1104,7 @@ slice[output_width: Int](self: Self, offset: Int) -> SIMD[type, output_width]
 
 ```python
 min(self: Self, other: Self) -> Self
-``
+```
 
 计算两个向量之间的元素最小值。
 
