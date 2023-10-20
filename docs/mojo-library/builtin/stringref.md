@@ -29,7 +29,7 @@ __init__(str: StringLiteral) -> Self
 
 **Returns**：
 
-构造的 `StringRef ` 对象。
+构造的 `StringRef` 对象。
 
 ```python
 __init__(ptr: Pointer[SIMD[si8, 1]], len: Int) -> Self
