@@ -54,7 +54,7 @@ modular update mojo
 
 ### Diagnostic options
 
-`--version`，'-v'
+`--version`，`-v`
 
 打印 Mojo 版本并退出。
 
