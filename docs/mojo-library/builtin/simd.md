@@ -1319,7 +1319,7 @@ shift_left[shift: Int](self: Self) -> Self
 
 **Returns**：
 
-SIMD 矢量通过移位元素向左移（无 rotate，用零填充）。
+SIMD 矢量通过 `shift` 元素向左移（无 rotate，用零填充）。
 
 ### `shift_right`
 
@@ -1339,4 +1339,4 @@ shift_right[shift: Int](self: Self) -> Self
 
 **Returns**：
 
-SIMD 矢量通过移位元素向右移（无 rotate，用零填充）。
+SIMD 矢量通过 `shift` 元素向右移（无 rotate，用零填充）。
