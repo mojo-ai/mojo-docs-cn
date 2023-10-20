@@ -26,7 +26,7 @@ SIMD 允许跨多个矢量数据元素执行单个指令。
 
 **Constraints**：
 
-SIMD 矢量的大小为正数，且幂为2。
+SIMD 矢量的大小为正数，且幂为 2。
 
 **Parameters**：
 
@@ -35,7 +35,7 @@ SIMD 矢量的大小为正数，且幂为2。
 
 **Aliases**：
 
-- element_type = _65x13_type`
+- `element_type = _65x13_type`
 
 **Fields**：
 
