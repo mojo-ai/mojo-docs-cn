@@ -507,4 +507,324 @@ SIMD 矢量的元素类型必须是整型。
 __and__(self: Self, rhs: Self) -> Self
 ```
 
-TBD
+返回 `self & rhs`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+**Returns**：
+
+`self & rhs`。
+
+### `__or__`
+
+```python
+__or__(self: Self, rhs: Self) -> Self
+```
+
+返回 `self | rhs`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+**Returns**：
+
+`self | rhs`。
+
+### `__xor__`
+
+```python
+__xor__(self: Self, rhs: Self) -> Self
+```
+
+返回 `self ^ rhs`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+**Returns**：
+
+`self ^ rhs`。
+
+### `__radd__`
+
+```python
+__radd__(self: Self, value: Self) -> Self
+```
+
+返回 `value + self`。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value + self`。
+
+### `__rsub__`
+
+```python
+__rsub__(self: Self, value: Self) -> Self
+```
+
+返回 `value - self`。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value - self`。
+
+### `__rmul__`
+
+```python
+__rmul__(self: Self, value: Self) -> Self
+```
+
+返回 `value * self`。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value * self`。
+
+### `__rtruediv__`
+
+```python
+__rtruediv__(self: Self, value: Self) -> Self
+```
+
+返回 `value / self`。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value / self`。
+
+### `__rfloordiv__`
+
+```python
+__rfloordiv__(self: Self, value: Int) -> Int
+```
+
+返回 `value // self`。
+
+**Args**：
+
+- **value** (`Int`)：另一个值。
+
+**Returns**：
+
+`value // self`。
+
+### `__rmod__`
+
+```python
+__rmod__(self: Self, value: Int) -> Int
+```
+
+返回 `value % self`。
+
+**Args**：
+
+- **value** (`Int`)：另一个值。
+
+**Returns**：
+
+`value % self`。
+
+### `__rlshift__`
+
+```python
+__rlshift__(self: Self, value: Self) -> Self
+```
+
+返回 `value << self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是整型。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value << self`。
+
+### `__rrshift__`
+
+```python
+__rrshift__(self: Self, value: Self) -> Self
+```
+
+返回 `value >> self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是整型。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value >> self`。
+
+### `__rand__`
+
+```python
+__rand__(self: Self, value: Self) -> Self
+```
+
+返回 `value & self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value & self`。
+
+### `__ror__`
+
+```python
+__ror__(self: Self, value: Self) -> Self
+```
+
+返回 `value | self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value | self`。
+
+### `__rxor__`
+
+```python
+__rxor__(self: Self, value: Self) -> Self
+```
+
+返回 `value ^ self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **value** (`Self`)：另一个值。
+
+**Returns**：
+
+`value ^ self`。
+
+### `__iadd__`
+
+```python
+__iadd__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）相加。
+
+向量中位于 `i` 的每个元素进行 `self[i] + rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行加法操作的 rhs。
+
+### `__isub__`
+
+```python
+__isub__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）相减。
+
+向量中位于 `i` 的每个元素进行 `self[i] - rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行减法操作的 rhs。
+
+### `__imul__`
+
+```python
+__imul__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）相乘。
+
+向量中位于 `i` 的每个元素进行 `self[i] * rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行乘法操作的 rhs。
+
+### `__itruediv__`
+
+```python
+__itruediv__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）相除（浮点数）。
+
+向量中位于 `i` 的每个元素进行 `self[i] / rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行除法操作的 rhs。
+
+### `__ifloordiv__`
+
+```python
+__ifloordiv__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）相除（向下取整）。
+
+向量中位于 `i` 的每个元素进行 `self[i] // rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行除法操作的 rhs。
+
+
