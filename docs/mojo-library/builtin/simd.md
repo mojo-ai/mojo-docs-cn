@@ -827,4 +827,239 @@ __ifloordiv__(inout self: Self, rhs: Self)
 
 - **rhs** (`Self`)：执行除法操作的 rhs。
 
+### `__imod__`
 
+```python
+__imod__(inout self: Self, rhs: Self)
+```
+
+执行就地（in-place）取余。
+
+向量中位于 `i` 的每个元素进行 `self[i] % rhs[i]` 运算。
+
+**Args**：
+
+- **rhs** (`Self`)：执行取余操作的 rhs。
+
+### `__ipow__`
+
+```python
+__ipow__(inout self: Self, rhs: Int)
+```
+
+执行就地（in-place）幂运算。
+
+向量中位于 `i` 的每个元素进行 `pow(self[i], rhs)` 运算。
+
+**Args**：
+
+- **rhs** (`Int`)：执行幂运算的 rhs。
+
+### `__ilshift__`
+
+```python
+__ilshift__(inout self: Self, rhs: Self)
+```
+
+计算 `self << rhs` 并将结果保存在 `self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+### `__irshift__`
+
+```python
+__irshift__(inout self: Self, rhs: Self)
+```
+
+计算 `self >> rhs` 并将结果保存在 `self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+### `__iand__`
+
+```python
+__iand__(inout self: Self, rhs: Self)
+```
+
+计算 `self & rhs` 并将结果保存在 `self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+### `__ixor__`
+
+```python
+__ixor__(inout self: Self, rhs: Self)
+```
+
+计算 `self ^ rhs` 并将结果保存在 `self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+### `__ior__`
+
+```python
+__ior__(inout self: Self, rhs: Self)
+```
+
+计算 `self | rhs` 并将结果保存在 `self`。
+
+**Constraints**：
+
+SIMD 矢量的元素类型必须是布尔值或整型。
+
+**Args**：
+
+- **rhs** (`Self`)：RHS 值。
+
+### `__len__`
+
+```python
+__len__(self: Self) -> Int
+```
+
+获取 SIMD 矢量的长度。
+
+**Returns**：
+
+SIMD 矢量的长度。
+
+### `splat`
+
+```python
+splat(x: Bool) -> Self
+```
+
+创建新 SIMD 向量，其元素与输入值相同的。
+
+**Args**：
+
+- **x** (`Bool`)：输入值。
+
+**Returns**：
+
+元素与输入值相同的新 SIMD 向量。
+
+```python
+splat(x: SIMD[type, 1]) -> Self
+```
+
+创建新 SIMD 向量，其元素与输入值相同的。
+
+**Args**：
+
+- **x** (`SIMD[type, 1]`)：输入标量值。
+
+**Returns**：
+
+元素与输入值相同的新 SIMD 向量。
+
+### `cast`
+
+```python
+cast[target: DType](self: Self) -> SIMD[target, size]
+```
+
+将 SIMD 矢量的元素强制转换为目标元素类型。
+
+**Parameters**：
+
+- **target** (`DType`)：DType 目标。
+
+**Returns**：
+
+一个新的 SIMD 向量，其元素已转换为目标元素类型。
+
+### `__int__`
+
+```python
+__int__(self: Self) -> Int
+```
+
+强制转换为 Int 值。如果存在小数分量，则该值将被截断为零。
+
+**Constraints**：
+
+SIMD 矢量的大小必须为 1。
+
+**Returns**：
+
+整型值。
+
+### `to_int`
+
+```python
+to_int(self: Self) -> Int
+```
+
+强制转换为 Int 值。如果存在小数分量，则该值将被截断为零。
+
+**Constraints**：
+
+SIMD 矢量的大小必须为 1。
+
+**Returns**：
+
+SIMD 矢量中单个整数元素的值。
+
+### `fma`
+
+```python
+fma(self: Self, multiplier: Self, accumulator: Self) -> Self
+```
+
+执行乘法累加运算，即：`self*multiplier + accumulator`。
+
+**Args**：
+
+- **multiplier** (`Self`)：进行乘法运算的值。
+- **accumulator** (`Self`)：进行累加运算的值。
+
+**Returns**：
+
+一个新的向量，其位于 `i` 的元素进行 `self[i]*multiplier[i] + accumulator[i]` 运算。
+
+### `shuffle`
+
+```python
+shuffle[*mask: Int](self: Self) -> Self
+```
+
+使用指定的掩码（permutation），将当前向量值与 `other` 值随机混合。
+
+**Parameters**：
+
+- **mask** (`*Int`)：要在随机混合中使用的排列。
+
+**Returns**：
+
+长度为 `len` 的新向量，其中位于 `i` 的值为 `(self)[permutation[i]]`。
+
+```python
+shuffle[*mask: Int](self: Self, other: Self) -> Self
+```
+
+TBD
