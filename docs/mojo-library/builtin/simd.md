@@ -1062,4 +1062,281 @@ shuffle[*mask: Int](self: Self) -> Self
 shuffle[*mask: Int](self: Self, other: Self) -> Self
 ```
 
-TBD
+使用指定的掩码（permutation），将当前向量值与 `other` 值随机混合。
+
+**Parameters**：
+
+- **mask** (`*Int`)：要在随机混合中使用的排列。
+
+**Args**：
+
+- **other** (`Self`)：另一个要随机混合的向量。
+
+**Returns**：
+
+长度为 `len` 的新向量，其中位于 `i` 的值为 `(self+other)[permutation[i]]`。
+
+### `slice`
+
+```python
+slice[output_width: Int](self: Self, offset: Int) -> SIMD[type, output_width]
+```
+
+返回具有给定偏移量且指定宽度的矢量切片。
+
+**Constraints**：
+
+`output_width + offset` 不得超过此 SIMD 矢量的大小。
+
+**Parameters**：
+
+- **output_width** (`Int`)：输出 SIMD 矢量大小。
+
+**Args**：
+
+- **offset** (`Int`)：切片的给定偏移量。
+
+**Returns**：
+
+元素映射到 `self[offset:offset+output_width]` 的新向量。
+
+### `min`
+
+```python
+min(self: Self, other: Self) -> Self
+``
+
+计算两个向量之间的元素最小值。
+
+**Args**：
+
+- **other** (`Self`)：另一个 SIMD 向量。
+
+**Returns**：
+
+一个新的 SIMD 向量，其位于 `i` 的每个元素为 `min(self[i], other[i])`。
+
+### `max`
+
+```python
+max(self: Self, other: Self) -> Self
+```
+
+计算两个向量之间的元素最大值。
+
+**Args**：
+
+- **other** (`Self`)：另一个 SIMD 向量。
+
+**Returns**：
+
+一个新的 SIMD 向量，其位于 `i` 的每个元素为 `max(self[i], other[i])`。
+
+### `reduce`
+
+```python
+reduce[func: fn[DType, Int](SIMD[*(0,0), *(0,1)], SIMD[*(0,0), *(0,1)]) capturing -> SIMD[*(0,0), *(0,1)]](self: Self) -> SIMD[type, 1]
+```
+
+使用提供的归约运算符约简矢量。
+
+**Parameters**：
+
+- **func** (`fn[DType, Int](SIMD[*(0,0), *(0,1)], SIMD[*(0,0), *(0,1)]) capturing -> SIMD[*(0,0), *(0,1)]`)：要应用于此 SIMD 中的元素的归约函数。
+
+**Returns**：
+
+一个新的标量，它是所有矢量元素的约简。
+
+### `reduce_max`
+
+```python
+reduce_max(self: Self) -> SIMD[type, 1]
+```
+
+使用 `max` 运算符约简向量。
+
+**Constraints**：
+
+向量的元素类型必须是整型或浮点型。
+
+**Returns**：
+
+向量的最大元素。
+
+### `reduce_min`
+
+```python
+reduce_min(self: Self) -> SIMD[type, 1]
+```
+
+使用 `min` 运算符约简向量。
+
+**Constraints**：
+
+向量的元素类型必须是整型或浮点型。
+
+**Returns**：
+
+向量的最小元素。
+
+### `reduce_add`
+
+```python
+reduce_add(self: Self) -> SIMD[type, 1]
+```
+
+使用 `add` 运算符约简向量。
+
+**Returns**：
+
+所有矢量元素的总和。
+
+### `reduce_mul`
+
+```python
+reduce_mul(self: Self) -> SIMD[type, 1]
+```
+
+使用 `mul` 运算符约简向量。
+
+**Constraints**：
+
+向量的元素类型必须是整型或浮点型。
+
+**Returns**：
+
+所有矢量元素的乘积。
+
+### `reduce_and`
+
+```python
+reduce_and(self: Self) -> Bool
+```
+
+使用 `and` 运算符约简布尔向量。
+
+**Constraints**：
+
+向量的元素类型必须是布尔类型。
+
+**Returns**：
+
+如果向量中的所有元素都为 True，则为 True，否则为 False。
+
+### `reduce_or`
+
+```python
+reduce_or(self: Self) -> Bool
+```
+
+使用 `or` 运算符约简布尔向量。
+
+**Constraints**：
+
+向量的元素类型必须是布尔类型。
+
+**Returns**：
+
+如果向量中的任何元素为 True，则为 True，否则为 False。
+
+### `select`
+
+```python
+select[result_type: DType](self: Self, true_case: SIMD[result_type, size], false_case: SIMD[result_type, size]) -> SIMD[result_type, size]
+```
+
+根据 SIMD 矢量的当前布尔值选择 `true_case` 或 `false_case` 的值。
+
+**Parameters**：
+
+- **result_type** (`DType`)：输入和输出 SIMD 矢量的元素类型。
+
+**Args**：
+
+- **true_case** (`SIMD[result_type, size]`)：如果位置值为 True，则选择此值。
+- **false_case** (`SIMD[result_type, size]`)：如果位置值为 False，则选择此值。
+
+**Returns**：
+
+形式为 `[true_case[i] if elem else false_case[i] in enumerate(self)]` 的新向量。
+
+### `rotate_left`
+
+```python
+rotate_left[shift: Int](self: Self) -> Self
+```
+
+通过 `shift` 元素将 SIMD 矢量的元素向左移（rotate 方式）。
+
+**Constraints**：
+
+`-size <= shift < size`
+
+**Parameters**：
+
+- **shift** (`Int`)：将 SIMD 矢量的元素向左移（rotate 方式）的位置数。
+
+**Returns**：
+
+SIMD 矢量通过 `shift` 元素向左移（rotate 方式）。
+
+### `rotate_right`
+
+```python
+rotate_right[shift: Int](self: Self) -> Self
+```
+
+通过 `shift` 元素将 SIMD 矢量的元素向右移（rotate 方式）。
+
+**Constraints**：
+
+`-size < shift <= size`
+
+**Parameters**：
+
+- **shift** (`Int`)：将 SIMD 矢量的元素向右移（rotate 方式）的位置数。
+
+**Returns**：
+
+SIMD 矢量通过 `shift` 元素向右移（rotate 方式）。
+
+### `shift_left`
+
+```python
+shift_left[shift: Int](self: Self) -> Self
+```
+
+通过 `shift` 元素将 SIMD 矢量的元素向左移动（无 rotate，用零填充）。
+
+**Constraints**：
+
+`0 <= shift <= size`
+
+**Parameters**：
+
+- **shift** (`Int`)：将 SIMD 矢量的元素向左移（无 rotate，用零填充）的位置数。
+
+**Returns**：
+
+SIMD 矢量通过移位元素向左移（无 rotate，用零填充）。
+
+### `shift_right`
+
+```python
+shift_right[shift: Int](self: Self) -> Self
+```
+
+通过 `shift` 元素将 SIMD 矢量的元素向右移动（无 rotate，用零填充）。
+
+**Constraints**：
+
+`0 <= shift <= size`
+
+**Parameters**：
+
+- **shift** (`Int`)：将 SIMD 矢量的元素向右移（无 rotate，用零填充）的位置数。
+
+**Returns**：
+
+SIMD 矢量通过移位元素向右移（无 rotate，用零填充）。
