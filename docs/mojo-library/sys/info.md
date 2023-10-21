@@ -276,26 +276,86 @@ sizeof[type: DType]() -> Int
 alignof[type: AnyType]() -> Int
 ```
 
-Returns the align of (in bytes) of the type.
+返回类型的对齐方式（以 bytes 为单位）。
 
-Parameters:
+**Parameters**：
 
-type (AnyType): The type in question.
-Returns:
+- **type** (`AnyType`)：所讨论的类型。
 
-The alignment of the type in bytes.
+**Returns**：
+
+类型以字节为单位的对齐方式。
 
 ```python
 alignof[type: DType]() -> Int
 ```
 
-Returns the align of (in bytes) of the dtype.
+返回数据类型的对齐方式（以 bytes 为单位）。
 
-Parameters:
+**Parameters**：
 
-type (DType): The DType in question.
-Returns:
+- **type** (`DType`)：所讨论的数据类型。
 
-The alignment of the dtype in bytes.
+**Returns**：
 
+数据类型以字节为单位的对齐方式。
 
+## `bitwidthof`
+
+```python
+bitwidthof[type: AnyType]() -> Int
+```
+
+返回类型的大小（以 bits 为单位）。
+
+**Parameters**：
+
+- **type** (`AnyType`)：所讨论的类型。
+
+**Returns**：
+
+ 类型以 bits 为单位的大小。
+
+```python
+bitwidthof[type: DType]() -> Int
+```
+
+返回数据类型的大小（以 bits 为单位）。
+
+**Parameters**：
+
+- **type** (`DType`)：所讨论的数据类型。
+
+**Returns**：
+
+数据类型以 bits 为单位的大小。
+
+## `simdwidthof`
+
+```python
+simdwidthof[type: AnyType]() -> Int
+```
+
+返回主机系统上类型的向量大小。
+
+**Parameters**：
+
+- **type** (`AnyType`)：所讨论的类型。
+
+**Returns**：
+
+主机系统上的类型的向量大小。
+
+```python
+simdwidthof[type: DType]() -> Int
+```
+
+返回主机系统上类型的向量大小。
+
+**Parameters**：
+
+- **type** (`DType`)：所讨论的数据类型。
+
+**Returns**：
+
+主机系统上数据类型的向量大小。
