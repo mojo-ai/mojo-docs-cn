@@ -30,7 +30,7 @@ from sys.intrinsics import PrefetchLocality
 
 **Functions**：
 
-`__init__`
+### `__init__`
 
 ```python
 __init__(value: Int) -> Self
@@ -62,7 +62,7 @@ __init__(value: Int) -> Self
 
 **Functions**：
 
-`__init__`
+### `__init__`
 
 ```python
 __init__(value: Int) -> Self
@@ -94,7 +94,7 @@ __init__(value: Int) -> Self
 
 **Functions**：
 
-`__init__`
+### `__init__`
 
 ```python
 __init__(value: Int) -> Self
@@ -130,7 +130,7 @@ __init__(value: Int) -> Self
 
 **Functions**：
 
-`__init__`
+### `__init__`
 
 ```python
 __init__() -> Self
@@ -142,7 +142,7 @@ __init__() -> Self
 
 完成构造预取配置。
 
-`for_read`
+### `for_read`
 
 ```python
 for_read(self: Self) -> Self
@@ -154,7 +154,7 @@ for_read(self: Self) -> Self
 
 更新后的预取参数。
 
-`for_write`
+### `for_write`
 
 ```python
 for_write(self: Self) -> Self
@@ -166,7 +166,7 @@ for_write(self: Self) -> Self
 
 更新后的预取参数。
 
-`no_locality`
+### `no_locality`
 
 ```python
 no_locality(self: Self) -> Self
@@ -178,7 +178,7 @@ no_locality(self: Self) -> Self
 
 更新后的预取参数。
 
-`low_locality`
+### `low_locality`
 
 ```python
 low_locality(self: Self) -> Self
@@ -190,7 +190,7 @@ low_locality(self: Self) -> Self
 
 更新后的预取参数。
 
-`medium_locality`
+### `medium_locality`
 
 ```python
 medium_locality(self: Self) -> Self
@@ -202,7 +202,7 @@ medium_locality(self: Self) -> Self
 
 更新后的预取参数。
 
-`high_locality`
+### `high_locality`
 
 ```python
 high_locality(self: Self) -> Self
@@ -214,7 +214,7 @@ high_locality(self: Self) -> Self
 
 更新后的预取参数。
 
-`to_data_cache`
+### `to_data_cache`
 
 ```python
 to_data_cache(self: Self) -> Self
@@ -226,7 +226,7 @@ to_data_cache(self: Self) -> Self
 
 更新后的预取参数。
 
-`to_instruction_cache`
+### `to_instruction_cache`
 
 ```python
 to_instruction_cache(self: Self) -> Self
