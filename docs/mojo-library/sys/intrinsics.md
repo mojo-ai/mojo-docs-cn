@@ -586,3 +586,277 @@ external_call[callee: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2
 
 外部函数调用的结果。
 
+## `gather`
+
+```python
+gather[type: DType, size: Int](base: SIMD[address, size], mask: SIMD[bool, size], passthrough: SIMD[type, size], alignment: Int) -> SIMD[type, size]
+```
+
+从SIMD向量中读取标量值，并将它们聚集到一个向量中。
+
+gather 函数从 SIMD 向量的内存位置中读取标量值，并将它们聚集到一个向量中。内存位置是在 `base` 地址的指针向量中提供的。根据提供的掩码访问内存。掩码中的每个向量通道都有一个位，用于防止对被掩码掉的通道进行内存访问。结果向量中被掩码掉的通道来自 `passthrough` 操作数的相应通道。
+
+ 一般来说，对于一些指针向量 `base`，掩码 `mask` 和透传参数 `pass`，调用的形式如下：
+
+```python
+gather(base, mask, pass)
+```
+
+等价于以下的 C++ 量加载序列：
+
+```python
+for (int i = 0; i < N; i++)
+  result[i] = mask[i] ? *base[i] : passthrough[i];
+```
+
+**Parameters**：
+
+- **type** (`DType`)：返回 SIMD 缓冲区的 DType。
+
+- **size** (`Int`)：返回 SIMD 缓冲区的大小。
+
+**Args**：
+
+- **base** (`SIMD[address, size]`)： 包含 gather 操作将访问的内存地址的向量。
+
+- **mask** (`SIMD[bool, size]`)：一个二进制向量，它阻止对基础向量的特定通道进行内存访问。
+
+- **passthrough** (`SIMD[type, size]`)：在结果向量中，被屏蔽的通道被替换为透传向量。
+  
+- **alignment** (`Int`)：源地址的对齐方式。必须是0或者一个二的幂常数整数值。
+
+**Returns**：
+
+包含收集操作结果的 SIMD[type, size]。
+
+## `scatter`
+
+```python
+scatter[type: DType, size: Int](value: SIMD[type, size], base: SIMD[address, size], mask: SIMD[bool, size], alignment: Int)
+```
+
+从SIMD向量中获取标量值，并将它们 `scatters` 到指针向量中。
+
+散布操作将来自 SIMD 内存位置向量的标量值存储到指针向量中，并将它们散布到指针向量中。内存位置以地址的形式在 'base' 指针向量中提供。根据提供的掩码存储内存。掩码为每个向量通道保留一个位，并用于防止对被屏蔽通道的内存访问。
+
+`value` 操作数是要写入内存的向量值。`base` 操作数是一个指针向量，指向值元素应存储的位置。它具有与值操作数相同的基础类型。 `mask` 操作数是一个布尔值向量。 `mask` 和 `value` 操作数的类型必须具有相同数量的向量元素。
+
+如果 _scatter 操作多次存储到相同的内存位置，则行为是未定义的。
+
+一般来说，对于一些向量 %value、指针向量 %base 和掩码 %mask 的指令，形式如下：
+
+```python
+%0 = pop.simd.scatter %value, %base[%mask] : !pop.simd<N, type>
+```
+
+相当于 C++ 中以下标量加载的序列：
+
+```python
+for (int i = 0; i < N; i++)
+  if (mask[i])
+    base[i] = value[i];
+```
+
+**Parameters**：
+
+- **type** (`DType`): value 的 DType。
+
+- **size** (`Int`): value 的大小。
+
+**Args**：
+
+- **value** (`SIMD[type, size]`)：包含散射操作结果的向量。
+
+- **base** (`SIMD[address, size]`)：包含散射访问的内存地址的向量。
+
+- **mask** (`SIMD[bool, size]`)： 一个二进制向量，用于阻止对基础向量的某些通道进行内存访问。
+
+- **alignment** (`Int`)：源地址的对齐方式。必须为 0 或 2 的幂常整数值。
+
+## `prefetch`
+
+```python
+prefetch[type: DType, params: PrefetchOptions](addr: DTypePointer[type])
+```
+
+在使用之前，预取指令或数据到缓存中。
+
+预取功能为目标提供预取提示，以便在使用之前将指令或数据预取到缓存中。
+
+**Parameters**：
+
+- **type** (`DType`)：存储在 addr 中的值的数据类型。
+
+- **params** (`PrefetchOptions`)：预取内在函数的配置选项。
+
+**Args**：
+
+- **addr** (`DTypePointer[type]`)：预取的数据指针。
+
+## `masked_load`
+
+```python
+masked_load[type: DType, size: Int](addr: DTypePointer[type], mask: SIMD[bool, size], passthrough: SIMD[type, size], alignment: Int) -> SIMD[type, size]
+```
+
+从内存中加载数据并返回，用来自传递向量的值替换掩码通道。
+
+**Parameters**：
+
+- **type** (`DType`)：返回 SIMD 缓冲区的 DType。
+
+- **size** (`Int`)： 返回 SIMD 缓冲区的大小。
+
+**Args**：
+
+- **addr** (`DTypePointer[type]`)：加载的基指针。
+
+- **mask** (`SIMD[bool, size]`)： 一个二进制向量，阻止对存储在 addr 处的内存的某些通道的内存访问。
+
+- **passthrough** (`SIMD[type, size]`)：在结果向量中，被屏蔽掉的通道将被替换为通过向量。
+
+- **alignment** (`Int`)：源地址的对齐方式。必须是 0 或 2 的幂常整数值。默认为 1。
+
+**Returns**：
+
+存储在 SIMD[type, size] 类型向量中的加载的内存。
+
+## `masked_store`
+
+```python
+masked_store[type: DType, size: Int](value: SIMD[type, size], addr: DTypePointer[type], mask: SIMD[bool, size], alignment: Int)
+```
+
+在内存位置存储一个值，跳过被屏蔽的通道。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **size** (`Int`)：存储的值的大小。
+
+**Args**：
+
+- **value** (`SIMD[type, size]`)：包含要存储的数据的向量。
+
+- **addr** (`DTypePointer[type]`)：存储数据的内存位置的向量。
+
+- **mask** (`SIMD[bool, size]`)：一个二进制向量，用于阻止对某些值的内存访问。
+
+- **alignment** (`Int`)：目标位置的对齐方式。必须是 0 或 2 的幂次整数常量值。
+
+## `compressed_store`
+
+```python
+compressed_store[type: DType, size: Int](value: SIMD[type, size], addr: DTypePointer[type], mask: SIMD[bool, size])
+```
+
+压缩值的通道，跳过掩码通道，并存储在 addr 处。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **size** (`Int`)：存储的值的大小。
+
+**Args**：
+
+- **value** (`SIMD[type, size]`)：包含要存储的数据的向量。
+
+- **addr** (`DTypePointer[type]`)：存储压缩数据的内存位置。
+
+- **mask** (`SIMD[bool, size]`)：一个二进制向量，用于防止对某些值通道的内存访问。
+
+## `strided_load`
+
+```python
+strided_load[type: DType, simd_width: Int](addr: DTypePointer[type], stride: Int, mask: SIMD[bool, simd_width]) -> SIMD[type, simd_width]
+```
+
+根据特定的步长从地址加载值。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **simd_width** (`Int`)：SIMD 向量的宽度。
+
+**Args**：
+
+- **addr** (`DTypePointer[type]`)：要从中加载数据的内存位置。
+
+- **stride** (`Int`)：加载再次之前要跳过的通道数。
+
+- **mask** (`SIMD[bool, simd_width]`)：一个二进制向量，防止对某些值的内存访问。
+
+**Returns**：
+
+一个包含加载数据的向量。
+
+```python
+strided_load[type: DType, simd_width: Int](addr: DTypePointer[type], stride: Int) -> SIMD[type, simd_width]
+```
+
+根据特定的步长从地址加载值。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **simd_width** (`Int`)：SIMD 向量的宽度。
+
+**Args**：
+
+- **addr** (`DTypePointer[type]`)：要从中加载数据的内存位置。
+
+- **stride** (`Int`)：加载再次之前要跳过的通道数。
+
+**Returns**：
+
+一个包含加载数据的向量。
+
+## `strided_store`
+
+```python
+strided_store[type: DType, simd_width: Int](value: SIMD[type, simd_width], addr: DTypePointer[type], stride: Int, mask: SIMD[bool, simd_width])
+```
+
+根据特定的步幅从地址加载值。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **simd_width** (`Int`)：SIMD 向量的宽度。
+
+**Args**：
+
+- **value** (`SIMD[type, simd_width]`)：存储的值。
+
+- **addr** (`DTypePointer[type]`)：存储值的位置。
+
+- **stride** (`Int`)：加载再次之前要跳过的通道数。
+
+- **mask** (`SIMD[bool, simd_width]`)：一个二进制向量，阻止对某些值的内存访问。
+
+```python
+strided_store[type: DType, simd_width: Int](value: SIMD[type, simd_width], addr: DTypePointer[type], stride: Int)
+```
+
+根据特定的步幅从地址加载值。
+
+**Parameters**：
+
+- **type** (`DType`)：存储的值的数据类型。
+
+- **simd_width** (`Int`)：SIMD 向量的宽度。
+
+**Args**：
+
+- **value** (`SIMD[type, simd_width]`)：存储的值。
+
+- **addr** (`DTypePointer[type]`)：存储值的位置。
+
+- **stride** (`Int`)：加载再次之前要跳过的通道数。
+
+
