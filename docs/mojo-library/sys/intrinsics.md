@@ -2,7 +2,7 @@
 
 定义内置函数。
 
-你可以从 `complex` 包中导入这些 API。例如：
+你可以从 `intrinsics` 包中导入这些 API。例如：
 
 ```python
 from sys.intrinsics import PrefetchLocality
@@ -138,7 +138,7 @@ __init__() -> Self
 
 使用默认参数构造 PrefetchOptions 的实例。
 
-**Returns**：
+Returns：
 
 完成构造预取配置。
 
@@ -150,7 +150,7 @@ for_read(self: Self) -> Self
 
 将预取目的设置为读取。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -162,7 +162,7 @@ for_write(self: Self) -> Self
 
 将预取目的设置为写入。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -174,7 +174,7 @@ no_locality(self: Self) -> Self
 
 将预取位置设置为无。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -186,7 +186,7 @@ low_locality(self: Self) -> Self
 
 将预取位置设置为低。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -198,7 +198,7 @@ medium_locality(self: Self) -> Self
 
 将预取位置设置为中。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -210,7 +210,7 @@ high_locality(self: Self) -> Self
 
 将预取位置设置为高。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -222,7 +222,7 @@ to_data_cache(self: Self) -> Self
 
 将预取目标设置为数据缓存。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
@@ -234,8 +234,187 @@ to_instruction_cache(self: Self) -> Self
 
 将预取目标设置为指令缓存。
 
-**Returns**：
+Returns：
 
 更新后的预取参数。
 
+## `llvm_intrinsic`
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType]() -> *"type"
+```
+
+调用一个没有参数的 LLVM 内部函数。
+
+调用一个名为 intrin 且返回类型为 type 的 LLVM 内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+
+**Returns**：
+
+调用没有参数的 LLVM 内部函数的结果。
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType](arg0: T0) -> *"type"
+```
+
+调用一个带有一个参数的 LLVM 内部函数。
+
+在参数 arg0 上调用名称为 intrin，返回类型为 type 的内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+  
+- **T0** (`AnyType`)：内部函数的第一个参数（arg0）的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：调用 LLVM 内部函数的参数。arg0 的类型必须是 T0。
+  
+**Returns**：
+
+使用 arg0 作为参数调用 LLVM 内部函数的结果。
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType](arg0: T0, arg1: T1) -> *"type"
+```
+
+调用一个带有两个参数的 LLVM 内部函数。
+
+在参数 arg0 和 arg1 上调用名称为 intrin，返回类型为 type 的内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+
+- **T0** (`AnyType`)：内部函数的第一个参数（arg0）的类型。
+
+- **T1** (`AnyType`)：内部函数的第二个参数（arg1）的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：调用 LLVM 内部函数的第一个参数。arg0 的类型必须是 T0。
+
+- **arg1** (`T1`)：调用 LLVM 内部函数的第二个参数。arg1 的类型必须是 T1。
+
+**Returns**：
+
+使用 arg0 和 arg1 作为参数调用 LLVM 内部函数的结果。
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType](arg0: T0, arg1: T1, arg2: T2) -> *"type"
+```
+
+调用一个带有三个参数的 LLVM 内部函数。
+
+在参数 arg0，arg1 和 arg2 上调用名称为 intrin，返回类型为 type 的内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+
+- **T0** (`AnyType`)：内部函数的第一个参数（arg0）的类型。
+
+- **T1** (`AnyType`)：内部函数的第二个参数（arg1）的类型。
+
+- **T2** (`AnyType`)：内部函数的第二个参数（arg2）的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：调用 LLVM 内部函数的第一个参数。arg0 的类型必须是 T0。
+
+- **arg1** (`T1`)：调用 LLVM 内部函数的第二个参数。arg1 的类型必须是 T1。
+
+- **arg2** (`T2`)：调用 LLVM 内部函数的第二个参数。arg2 的类型必须是 T2。
+
+**Returns**：
+
+使用 arg0，arg1 和 arg2 作为参数调用 LLVM 内部函数的结果。
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType, T3: AnyType](arg0: T0, arg1: T1, arg2: T2, arg3: T3) -> *"type"
+```
+
+调用一个带有四个参数的 LLVM 内部函数。
+
+在参数 arg0，arg1，arg2 和 arg3 上调用名称为 intrin，返回类型为 type 的内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+
+- **T0** (`AnyType`)：内部函数的第一个参数（arg0）的类型。
+
+- **T1** (`AnyType`)：内部函数的第二个参数（arg1）的类型。
+
+- **T2** (`AnyType`)：内部函数的第二个参数（arg2）的类型。
+
+- **T3** (`AnyType`)：内部函数的第二个参数（arg3）的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：调用 LLVM 内部函数的第一个参数。arg0 的类型必须是 T0。
+
+- **arg1** (`T1`)：调用 LLVM 内部函数的第二个参数。arg1 的类型必须是 T1。
+
+- **arg2** (`T2`)：调用 LLVM 内部函数的第二个参数。arg2 的类型必须是 T2。
+
+- **arg3** (`T3`)：调用 LLVM 内部函数的第二个参数。arg3 的类型必须是 T3。
+  
+**Returns**：
+
+使用 arg0，arg1，arg2 和 arg3 作为参数调用 LLVM 内部函数的结果。
+
+```python
+llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType, T3: AnyType, T4: AnyType](arg0: T0, arg1: T1, arg2: T2, arg3: T3, arg4: T4) -> *"type"
+```
+
+调用一个带有五个参数的 LLVM 内部函数。
+
+在参数 arg0，arg1，arg2，arg3 和 arg4 上调用名称为 intrin，返回类型为 type 的内部函数。
+
+**Parameters**：
+
+- **intrin** (`StringLiteral`): LLVM 内部函数的名称。
+
+- **type** (`AnyType`): 内部函数的返回类型。
+
+- **T0** (`AnyType`)：内部函数的第一个参数（arg0）的类型。
+
+- **T1** (`AnyType`)：内部函数的第二个参数（arg1）的类型。
+
+- **T2** (`AnyType`)：内部函数的第二个参数（arg2）的类型。
+
+- **T3** (`AnyType`)：内部函数的第二个参数（arg3）的类型。
+  
+- **T4** (`AnyType`)：内部函数的第二个参数（arg4）的类型。
+  
+**Args**：
+
+- **arg0** (`T0`)：调用 LLVM 内部函数的第一个参数。arg0 的类型必须是 T0。
+
+- **arg1** (`T1`)：调用 LLVM 内部函数的第二个参数。arg1 的类型必须是 T1。
+
+- **arg2** (`T2`)：调用 LLVM 内部函数的第二个参数。arg2 的类型必须是 T2。
+
+- **arg3** (`T3`)：调用 LLVM 内部函数的第二个参数。arg3 的类型必须是 T3。
+
+- **arg4** (`T4`)：调用 LLVM 内部函数的第二个参数。arg4 的类型必须是 T4。
+  
+**Returns**：
+
+使用 arg0，arg1，arg2，arg3 和 arg4 作为参数调用 LLVM 内部函数的结果。
 
