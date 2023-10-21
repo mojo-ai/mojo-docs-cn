@@ -418,3 +418,171 @@ llvm_intrinsic[intrin: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T
 
 使用 arg0，arg1，arg2，arg3 和 arg4 作为参数调用 LLVM 内部函数的结果。
 
+## `external_call`
+
+```python
+external_call[callee: StringLiteral, type: AnyType]() -> *"type"
+```
+
+调用外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+
+**Returns**：
+
+外部函数调用的结果。
+
+```python
+external_call[callee: StringLiteral, type: AnyType, T0: AnyType](arg0: T0) -> *"type"
+```
+
+调用带一个参数的外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+  
+- **T0** (`AnyType`)：第一个参数的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：第一个参数。
+
+**Returns**：
+
+外部函数调用的结果。
+
+```python
+external_call[callee: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType](arg0: T0, arg1: T1) -> *"type"
+```
+
+调用带两个参数的外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+  
+- **T0** (`AnyType`)：第一个参数的类型。
+
+- **T1** (`AnyType`)：第二个参数的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：第一个参数。
+
+- **arg1** (`T1`)：第二个参数。
+
+**Returns**：
+
+外部函数调用的结果。
+
+```python
+external_call[callee: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType](arg0: T0, arg1: T1, arg2: T2) -> *"type"
+```
+
+调用带三个参数的外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+  
+- **T0** (`AnyType`)：第一个参数的类型。
+
+- **T1** (`AnyType`)：第二个参数的类型。
+
+- **T2** (`AnyType`)：第三个参数的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：第一个参数。
+
+- **arg1** (`T1`)：第二个参数。
+  
+- **arg2** (`T2`)：第三个参数。
+
+**Returns**：
+
+外部函数调用的结果。
+
+```python
+external_call[callee: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType, T3: AnyType](arg0: T0, arg1: T1, arg2: T2, arg3: T3) -> *"type"
+```
+
+调用带四个参数的外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+  
+- **T0** (`AnyType`)：第一个参数的类型。
+
+- **T1** (`AnyType`)：第二个参数的类型。
+
+- **T2** (`AnyType`)：第三个参数的类型。
+
+- **T3** (`AnyType`)：第四个参数的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：第一个参数。
+
+- **arg1** (`T1`)：第二个参数。
+  
+- **arg2** (`T2`)：第三个参数。
+
+- **arg3** (`T3`)：第四个参数。
+
+**Returns**：
+
+外部函数调用的结果。
+
+```python
+external_call[callee: StringLiteral, type: AnyType, T0: AnyType, T1: AnyType, T2: AnyType, T3: AnyType, T4: AnyType](arg0: T0, arg1: T1, arg2: T2, arg3: T3, arg4: T4) -> *"type"
+```
+
+调用带五个参数的外部函数。
+
+**Parameters**：
+
+- **callee** (`StringLiteral`)：外部函数的名称。
+
+- **type** (`AnyType`)：返回类型。
+  
+- **T0** (`AnyType`)：第一个参数的类型。
+
+- **T1** (`AnyType`)：第二个参数的类型。
+
+- **T2** (`AnyType`)：第三个参数的类型。
+
+- **T3** (`AnyType`)：第四个参数的类型。
+
+- **T4** (`AnyType`)：第五个参数的类型。
+
+**Args**：
+
+- **arg0** (`T0`)：第一个参数。
+
+- **arg1** (`T1`)：第二个参数。
+  
+- **arg2** (`T2`)：第三个参数。
+
+- **arg3** (`T3`)：第四个参数。
+
+- **arg4** (`T4`)：第五个参数。
+
+**Returns**：
+
+外部函数调用的结果。
+
